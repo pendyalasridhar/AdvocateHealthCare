@@ -1,0 +1,2 @@
+MainPackage=C:\Users\sridhar\Desktop\AdvocateHealthCare\AdvocateHealthCare\bin\x64\Debug\AdvocateHealthCare_1.0.104.0_x64_Debug.appx
+SymbolPackage=C:\Users\sridhar\Desktop\app packages\AdvocateHealthCare_1.0.104.0_Debug_Test\AdvocateHealthCare_1.0.104.0_x64_Debug.appxsym

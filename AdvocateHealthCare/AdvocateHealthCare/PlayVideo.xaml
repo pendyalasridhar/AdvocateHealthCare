@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="AdvocateHealthCare.PlayVideo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AdvocateHealthCare"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.08*"></RowDefinition>
+                <RowDefinition Height="0.8*"></RowDefinition>
+                <RowDefinition Height="0.05*"></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0" Source="Assets/back.png" HorizontalAlignment="Left" Margin="10,0,0,0" x:Name="BackNav" Tapped="BackNav_Tapped"></Image>
+            <Grid Grid.Row="1">
+                <MediaElement   Name="mediaYoutube" Source="{Binding VideoUri}">
+                </MediaElement>
+                <Image Source="Assets/pause.png" Height="30" x:Name="imgPause" Visibility="Collapsed" VerticalAlignment="Center"></Image>
+            </Grid>
+            <Grid Grid.Row="2">
+                <TextBlock x:Name="txtCoutDown" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Center"></TextBlock>
+            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3">
+
+                <Button Content="Pause" x:Name="btnPause" Click="btnPause_Click"></Button>
+                <Button Content="Stop" x:Name="btnStop" Margin="5,0,0,0" Click="btnStop_Click"></Button>
+                <Button Content="Play" x:Name="btnPLay" Margin="5,0,0,0" Click="btnPLay_Click"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
