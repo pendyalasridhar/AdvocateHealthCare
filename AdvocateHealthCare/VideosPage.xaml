@@ -26,7 +26,7 @@
             <TextBlock Text="Videos" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="20" Margin="10,0,0,0"></TextBlock>
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                    <Canvas  Margin="0,0,30,0" Tapped="Notificationgridtapped"  >
+                    <Canvas  Margin="0,0,40,0" Tapped="Notificationgridtapped"  >
                         <Image  x:Name="notificationsImg" Source="/Assets/notifications.png" />
                         <Ellipse Canvas.Left="10" Fill="#E5302B" x:Name="ec"  Width="18" Height="18" />
                         <TextBlock Canvas.Left="15" Canvas.Top="0" Margin="0,0,0,0" FontSize="12" x:Name="txtNotificationCount" Foreground="#ffffff"></TextBlock>
@@ -46,150 +46,102 @@
                 </Pivot.HeaderTemplate>
                 <Pivot.Items>
                     <PivotItem Header="All">
-                        <Grid Background="#EFEFEF" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <GridView ScrollViewer.VerticalScrollBarVisibility="Hidden"  ItemContainerStyle="{StaticResource GridViewItemExpanded}" x:Name="gridVideosDisplay" Grid.Row="0" HorizontalAlignment="Left" SelectionChanged="gridVideosDisplay_SelectionChanged">
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid Orientation="Horizontal"></VariableSizedWrapGrid>
-                                    </ItemsPanelTemplate>
-
-                                </GridView.ItemsPanel>
-                                <GridView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid  Height="230" MaxHeight="300"  Margin="5,30,10,10" Background="#FEFEFE">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="0.22*"/>
-                                                <RowDefinition Height="0.05*"/>
-                                                <RowDefinition Height="0.7*"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid Grid.Row="0" >
-                                                <TextBlock Text="{Binding VideoHeader}" Foreground="#DF6C3F" TextWrapping="Wrap" FontSize="20" Margin="10,0,0,0"></TextBlock>
-                                            </Grid>
-                                            <Grid Grid.Row="1" Margin="0,10,0,0">
-                                            </Grid>
-                                            <Grid Grid.Row="2" Margin="0,10,0,0">
-                                                <Image Source="{Binding LocalImagePath}" ></Image>
-                                                <!--<Image Source="/Assets/video_play.png" Margin="0,0,0,0" Height="64" Width="64"  VerticalAlignment="Center"></Image>-->
-                                            </Grid>
-                                        </Grid>
-                                    </DataTemplate>
-                                </GridView.ItemTemplate>
-                            </GridView>
-
-                        </Grid>
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                            <Grid  Name="tileGridVideos123"  Background="#EFEFEF" Margin="0,0,40,0">
+                            </Grid>
+                        </ScrollViewer>
                     </PivotItem>
                     <PivotItem Header="General">
-                        <Grid Background="#EFEFEF" >
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                            <Grid  Name="tileGridVideos1"  Background="#EFEFEF" Margin="0,0,40,0">
+                            </Grid>
+                        </ScrollViewer>
+                        <!--<Grid Background="#EFEFEF" Margin="0,25,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <GridView ScrollViewer.VerticalScrollBarVisibility="Hidden"  ItemContainerStyle="{StaticResource GridViewItemExpanded}" x:Name="gridVideosDisplay2" Grid.Row="0" HorizontalAlignment="Center" SelectionChanged="gridVideosDisplay2_SelectionChanged">
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
+                                        <VariableSizedWrapGrid  Orientation="Horizontal"></VariableSizedWrapGrid>
                                     </ItemsPanelTemplate>
 
                                 </GridView.ItemsPanel>
                                 <GridView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Width="470" Height="230"  Margin="10,10,10,10" Background="#FEFEFE">
+                                        <Grid MaxHeight="230" MaxWidth="225"  Margin="0,0,0,0" Background="#FEFEFE">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="0.22*"/>
                                                 <RowDefinition Height="0.05*"/>
                                                 <RowDefinition Height="0.7*"/>
                                             </Grid.RowDefinitions>
                                             <Grid Grid.Row="0" >
-                                                <TextBlock Text="{Binding VideoHeader}" Foreground="#DF6C3F" TextWrapping="Wrap" FontSize="19" Margin="10,0,0,0"></TextBlock>
+                                                <TextBlock Text="{Binding VideoHeader}" Foreground="#DF6C3F" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="19" Margin="10,0,0,0"></TextBlock>
                                             </Grid>
                                             <Grid Grid.Row="1" Margin="0,10,0,0">
                                             </Grid>
                                             <Grid Grid.Row="2" Margin="0,10,0,0">
                                                 <Image Source="{Binding LocalImagePath}" Stretch="Fill"></Image>
-                                                <!--<Image Source="/Assets/video_play.png" Margin="0,0,0,0" Height="50" Width="50"  VerticalAlignment="Center"></Image>-->
+                                                -->
+                        <!--<Image Source="/Assets/video_play.png" Margin="0,0,0,0" Height="50" Width="50"  VerticalAlignment="Center"></Image>-->
+                        <!--
                                             </Grid>
                                         </Grid>
                                     </DataTemplate>
                                 </GridView.ItemTemplate>
                             </GridView>
 
-                        </Grid>
+                        </Grid>-->
 
                     </PivotItem>
                     <PivotItem Header="Pre Delivery" >
-                        <Grid Background="#EFEFEF" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <GridView ScrollViewer.VerticalScrollBarVisibility="Hidden"  ItemContainerStyle="{StaticResource GridViewItemExpanded}" x:Name="gridVideosDisplay1" Grid.Row="0" HorizontalAlignment="Center" SelectionChanged="gridVideosDisplay1_SelectionChanged">
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
-                                    </ItemsPanelTemplate>
-
-                                </GridView.ItemsPanel>
-                                <GridView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid Width="470" Height="230"  Margin="10,10,10,10" Background="#FEFEFE" >
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="0.22*"/>
-                                                <RowDefinition Height="0.05*"/>
-                                                <RowDefinition Height="0.7*"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid Grid.Row="0" >
-                                                <TextBlock Text="{Binding VideoHeader}" Foreground="#DF6C3F" TextWrapping="Wrap" FontSize="19" Margin="10,0,0,0"></TextBlock>
-                                            </Grid>
-                                            <Grid Grid.Row="1" Margin="0,10,0,0">
-                                            </Grid>
-                                            <Grid Grid.Row="2" Margin="0,10,0,0">
-                                                <Image Source="{Binding LocalImagePath}" Stretch="Fill"></Image>
-                                                <!--<Image Source="/Assets/video_play.png" Margin="0,0,0,0" Height="50" Width="50"  VerticalAlignment="Center"></Image>-->
-                                            </Grid>
-                                        </Grid>
-                                    </DataTemplate>
-                                </GridView.ItemTemplate>
-                            </GridView>
-
-                        </Grid>
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                            <Grid  Name="tileGridVideos2"  Background="#EFEFEF" Margin="0,0,40,0">
+                            </Grid>
+                        </ScrollViewer>
 
                     </PivotItem>
                     <PivotItem Header="Post Delivery" >
-                        <Grid Background="#EFEFEF" >
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                            <Grid  Name="tileGridVideos3"  Background="#EFEFEF" Margin="0,0,40,0">
+                            </Grid>
+                        </ScrollViewer>
+                        <!--<Grid Background="#EFEFEF" Margin="0,25,0,0" >
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <GridView x:Name="gridVideosDisplay3" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ItemContainerStyle="{StaticResource GridViewItemExpanded}" Grid.Row="0" HorizontalAlignment="Center" SelectionChanged="gridVideosDisplay3_SelectionChanged">
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
+                                        <VariableSizedWrapGrid  Orientation="Horizontal"></VariableSizedWrapGrid>
                                     </ItemsPanelTemplate>
 
                                 </GridView.ItemsPanel>
                                 <GridView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Width="470" Height="230"  Margin="10,10,10,10" Background="#FEFEFE">
+                                        <Grid MaxHeight="230" MaxWidth="225"  Margin="0,0,0,0" Background="#FEFEFE">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="0.22*"/>
                                                 <RowDefinition Height="0.05*"/>
                                                 <RowDefinition Height="0.7*"/>
                                             </Grid.RowDefinitions>
                                             <Grid Grid.Row="0" >
-                                                <TextBlock Text="{Binding VideoHeader}" Foreground="#DF6C3F" TextWrapping="Wrap" FontSize="19" Margin="10,0,0,0"></TextBlock>
+                                                <TextBlock Text="{Binding VideoHeader}" Foreground="#DF6C3F" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="19" Margin="10,0,0,0"></TextBlock>
                                             </Grid>
                                             <Grid Grid.Row="1" Margin="0,10,0,0">
                                             </Grid>
                                             <Grid Grid.Row="2" Margin="0,10,0,0">
                                                 <Image Source="{Binding LocalImagePath}" Stretch="Fill"></Image>
-                                                <!--<Image Source="/Assets/video_play.png" Margin="0,0,0,0" Height="50" Width="50"  VerticalAlignment="Center"></Image>-->
+                                                -->
+                        <!--<Image Source="/Assets/video_play.png" Margin="0,0,0,0" Height="50" Width="50"  VerticalAlignment="Center"></Image>-->
+                        <!--
                                             </Grid>
                                         </Grid>
                                     </DataTemplate>
                                 </GridView.ItemTemplate>
                             </GridView>
 
-                        </Grid>
+                        </Grid>-->
 
                     </PivotItem>
                 </Pivot.Items>
@@ -197,4 +149,5 @@
         </StackPanel>
     </Grid>
 </Page>
+ 
  

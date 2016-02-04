@@ -9,18 +9,18 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/login_bg.png"></ImageBrush>
+            <ImageBrush x:Name="imgLoginBg" ></ImageBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.85*"></ColumnDefinition>
+            <!--<ColumnDefinition Width="0.85*"></ColumnDefinition>-->
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1" Height="500" Width="320" HorizontalAlignment="Left" Margin="0,120,0,0">
+        <Grid Grid.Column="0" Height="500" Width="320"  x:Name="grdLogin">
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Login" FontWeight="Thin" FontSize="30"></TextBlock>
                 <Line Stretch="Fill" Stroke="Black" X2="1" StrokeThickness="1"  Margin="0,5,0,0"/>
                 <TextBox Text="" BorderThickness="0" x:Name="userNameText" PlaceholderText="Enter your Email Address" Height="40" Margin="0,15,0,0"></TextBox>
-               
+
                 <PasswordBox Password="" x:Name="pwdText" BorderThickness="0" PlaceholderText="Enter your Password" Height="40" Margin="0,15,0,0"></PasswordBox>
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                     <CheckBox  x:Name="cbCheckBox" />

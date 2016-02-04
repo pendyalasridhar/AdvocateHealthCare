@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -14,6 +15,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -26,6 +28,7 @@ namespace AdvocateHealthCare
     public sealed partial class LoginPage : Page
     {
         int checkBoxFlag = 0;
+        public DisplayOrientations orientation = DisplayOrientations.Landscape;
         public LoginPage()
         {
             this.InitializeComponent();
@@ -39,6 +42,45 @@ namespace AdvocateHealthCare
                 userNameText.Text = Windows.Storage.ApplicationData.Current.LocalSettings.Values["userMailAddress"].ToString();
                 pwdText.Password = Windows.Storage.ApplicationData.Current.LocalSettings.Values["userPassword"].ToString();
                 cbCheckBox.IsChecked = true;
+            }
+            var bounds = Window.Current.Bounds;
+
+            double height = bounds.Height;
+
+            double width = bounds.Width;
+            if (height < width)
+            {
+                orientation = DisplayOrientations.Landscape;
+                imgLoginBg.ImageSource = new BitmapImage(new Uri(@"ms-appx:/Assets/login_bg.png", UriKind.Absolute));
+                grdLogin.Margin = new Thickness(280, 80, 0, 0);
+            }
+            else
+            {
+                orientation = DisplayOrientations.Portrait;
+                imgLoginBg.ImageSource = new BitmapImage(new Uri(@"ms-appx:/Assets/login-potrait.png", UriKind.Absolute));
+                grdLogin.Margin = new Thickness(0, 0, 0, 300);
+            }
+            DisplayProperties.OrientationChanged += Page_OrientationChanged;
+        }
+        public void Page_OrientationChanged(object sender)
+        {
+            //The orientation of the device is ...
+            orientation = DisplayProperties.CurrentOrientation;
+            if (orientation == DisplayOrientations.Landscape || orientation == DisplayOrientations.LandscapeFlipped)
+            {
+                imgLoginBg.ImageSource = new BitmapImage(new Uri(@"ms-appx:/Assets/login_bg.png", UriKind.Absolute));
+                grdLogin.Margin = new Thickness(280, 150, 0, 0);
+                //ConstructTileGridgallery(objListGallery);
+            }
+            if (orientation == DisplayOrientations.Portrait || orientation == DisplayOrientations.PortraitFlipped)
+            {
+                imgLoginBg.ImageSource = new BitmapImage(new Uri(@"ms-appx:/Assets/login-potrait.png", UriKind.Absolute));
+                grdLogin.VerticalAlignment = VerticalAlignment.Top;
+                grdLogin.HorizontalAlignment = HorizontalAlignment.Center;
+                grdLogin.Margin = new Thickness(0, 50, 0, 0);
+
+                //ConstructTileGridgallery(objListGallery);
+                //imgLoginBg.ImageSource = new BitmapImage(new Uri(@"ms-appx:/Assets/login-potrait.png", UriKind.Absolute));
             }
 
         }

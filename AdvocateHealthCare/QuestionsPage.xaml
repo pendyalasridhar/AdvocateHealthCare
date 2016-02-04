@@ -12,9 +12,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="SplitViewStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <template2:MyDataTemplateSelector2 x:Key="mytemplate2" FirstItemStyle="{StaticResource GalleryFirstItemTemplate}" ItemStyle="{StaticResource GalleryItemstemplate}"/>
+            <!--<template2:MyDataTemplateSelector2 x:Key="mytemplate2" FirstItemStyle="{StaticResource GalleryFirstItemTemplate}" ItemStyle="{StaticResource GalleryItemstemplate}"/>
             <DataTemplate x:Name="GalleryFirstItemTemplate">
-                <Grid Width="399"  Height="256" Background="#ffffff" Margin="10,10,10,10" x:Name="addQuestions" Tapped="addQuestions_Tapped">
+                <Grid Width="399"  Height="256" Background="#ffffff" Margin="0,0,0,0" x:Name="addQuestions" Tapped="addQuestions_Tapped">
                     <StackPanel Orientation="Vertical" Margin="0,20,0,0">
                         <TextBlock Text="Question for my care provider"  FontSize="20" HorizontalAlignment="Center"></TextBlock>
                         <Image Source="Assets/add_a_journal.png" Height="70" Margin="0,30,0,0"></Image>
@@ -24,7 +24,7 @@
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Name="GalleryItemstemplate">
-                <Grid Width="399"  Height="256" Margin="10,10,10,10" Background="#FEFEFE">
+                <Grid Width="399"  Height="256" Margin="0,0,0,0" Background="#FEFEFE">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.4*"/>
                         
@@ -59,7 +59,7 @@
                     <TextBox Width="392"  IsReadOnly="True" Margin="0,0,0,0" Grid.Row="1" Text="{Binding QuestionInfo}"  TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" BorderThickness="0"></TextBox>
                     <Image Grid.Row="1" Source="{Binding imgProp}" Stretch="Fill" Height="100" ></Image>
                 </Grid>
-            </DataTemplate>
+            </DataTemplate>-->
         </ResourceDictionary>
     </Page.Resources>
     <Grid Background="#eeeeee">
@@ -76,7 +76,7 @@
 
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                    <Canvas  Margin="0,0,30,0" Tapped="Notificationgridtapped" >
+                    <Canvas  Margin="0,0,40,0" Tapped="Notificationgridtapped" >
                         <Image  x:Name="notificationsImg"  Source="/Assets/notifications.png" />
                         <Ellipse Canvas.Left="10" Fill="#E5302B" x:Name="ec"  Width="18" Height="18" />
                         <TextBlock Canvas.Left="15" Canvas.Top="0" Margin="0,0,0,0" FontSize="12" x:Name="txtNotificationCount" Foreground="#ffffff"></TextBlock>
@@ -94,26 +94,32 @@
                 </DataTemplate>
             </Pivot.HeaderTemplate>
             <Pivot.Items>
-                <PivotItem Header="All" >
-                    <Grid Background="#F0F0F0">
+                <PivotItem Header="" >
+                    <!--<Grid Background="#F0F0F0" Margin="0,25,0,0">
                         <Grid Background="#EFEFEF">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <GridView x:Name="gridGallary" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ItemContainerStyle="{StaticResource GridViewItemExpanded}" Grid.Row="0" HorizontalAlignment="Left" ItemTemplateSelector="{StaticResource mytemplate2}" Margin="0,15,0,0">
+                            <GridView x:Name="gridGallary" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ItemContainerStyle="{StaticResource GridViewItemExpanded}" Grid.Row="0" HorizontalAlignment="Left" ItemTemplateSelector="{StaticResource mytemplate2}" Margin="0,0,0,0">
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
+                                        <VariableSizedWrapGrid  Orientation="Horizontal"></VariableSizedWrapGrid>
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                             </GridView>
 
                         </Grid>
 
-                    </Grid>
+                    </Grid>-->
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+
+                        <Grid Name="questionstileGrid"   Margin="0,5,0,5" Background="#EEEEEE">
+
+                        </Grid>
+                    </ScrollViewer>
                 </PivotItem>
-                <PivotItem Header="First Trimester">
-                    <Grid Background="#F0F0F0">
+                <!--<PivotItem Header="First Trimester">
+                    <Grid Background="#F0F0F0" Margin="0,25,0,0">
                         <Grid Background="#EFEFEF">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -121,7 +127,7 @@
                             <GridView x:Name="gridGallary1" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ItemContainerStyle="{StaticResource GridViewItemExpanded}" Grid.Row="0" HorizontalAlignment="Left" ItemTemplateSelector="{StaticResource mytemplate2}" Margin="0,15,0,0">
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
+                                        <VariableSizedWrapGrid  Orientation="Horizontal"></VariableSizedWrapGrid>
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                             </GridView>
@@ -131,7 +137,7 @@
                     </Grid>
                 </PivotItem>
                 <PivotItem Header="Second Trimester">
-                    <Grid Background="#F0F0F0">
+                    <Grid Background="#F0F0F0" Margin="0,25,0,0">
                         <Grid Background="#EFEFEF">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -139,7 +145,7 @@
                             <GridView x:Name="gridGallary2" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ItemContainerStyle="{StaticResource GridViewItemExpanded}" Grid.Row="0" HorizontalAlignment="Left" ItemTemplateSelector="{StaticResource mytemplate2}" Margin="0,15,0,0">
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
+                                        <VariableSizedWrapGrid  Orientation="Horizontal"></VariableSizedWrapGrid>
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                             </GridView>
@@ -148,7 +154,7 @@
                     </Grid>
                 </PivotItem>
                 <PivotItem Header="Third Trimester">
-                    <Grid Background="#F0F0F0">
+                    <Grid Background="#F0F0F0" Margin="0,25,0,0">
                         <Grid Background="#EFEFEF">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -156,7 +162,7 @@
                             <GridView x:Name="gridGallary3" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ItemContainerStyle="{StaticResource GridViewItemExpanded}" Grid.Row="0" HorizontalAlignment="Left" ItemTemplateSelector="{StaticResource mytemplate2}" Margin="0,15,0,0">
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
+                                        <VariableSizedWrapGrid  Orientation="Horizontal"></VariableSizedWrapGrid>
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                             </GridView>
@@ -164,7 +170,7 @@
                         </Grid>
 
                     </Grid>
-                </PivotItem>
+                </PivotItem>-->
             </Pivot.Items>
         </Pivot>
 

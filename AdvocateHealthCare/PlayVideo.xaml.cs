@@ -1,4 +1,5 @@
-﻿using MyToolkit.Multimedia;
+﻿
+using MyToolkit.Multimedia;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,22 +23,37 @@ namespace AdvocateHealthCare
     /// </summary>
     public sealed partial class PlayVideo : Page
     {
-        int VideoId;
+        string VideoId;
         string videoSource;
+        Uri VideoUriX;
+        public string VideoValue;
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter != null)
-            {//play videos from homepage
-                //string DoctorVideo = e.Parameter.ToString();
-                AdvocateHealthCare.HomePage.navigationvideos obj = (AdvocateHealthCare.HomePage.navigationvideos)e.Parameter;
-                videoSource = obj.source;
-                PlayYoutubeVideo(obj.videosource.ToString());
-            }
-            else
             {
-                //plays videos from videos page
-                PlayVideoFromVideoPage();
+                //play videos from homepage
+                //string DoctorVideo = e.Parameter.ToString();
+
+                AdvocateHealthCare.HomePage.navigationvideos obj = (AdvocateHealthCare.HomePage.navigationvideos)e.Parameter;
+                //if()
+                if (obj.videosource == "VideoIDFromHomePage")
+                {
+                    VideoValue = obj.videosource;
+                    PlayYoutubeVideo("aANj9_oeyUM");
+                }
+                else
+                {
+                    PlayVideoFromVideoPage(obj.videosource);
+                }
+                //videoSource = obj.source;
+                //PlayYoutubeVideo(obj.videosource.ToString());
             }
+            //else
+            //{
+            //    //plays videos from videos page
+            //    PlayVideoFromVideoPage();
+            //}
         }
         public PlayVideo()
         {
@@ -45,63 +61,64 @@ namespace AdvocateHealthCare
             //}
             //PlayYoutubeVideo(VideoId);
         }
-        public void PlayVideoFromVideoPage()
+        public void PlayVideoFromVideoPage(string id)
         {
-            VideoId = (App.Current as App).NavigateText;
+            //VideoId = (App.Current as App).NavigateText;
+            VideoId = id;
             switch (VideoId)
             {
-                case 1:
+                case "1":
                     PlayYoutubeVideo("wLWQ9XwlKao");
                     break;
-                case 2:
+                case "2":
                     PlayYoutubeVideo("bcLPRubq5cM");
                     break;
-                case 3:
+                case "3":
                     PlayYoutubeVideo("L1sFlTsq34k");
                     break;
-                case 4:
+                case "4":
                     PlayYoutubeVideo("B8dp85rnAQg");
                     break;
-                case 5:
+                case "5":
                     PlayYoutubeVideo("wWIgBJRtuJ0");
                     break;
-                case 6:
+                case "6":
                     PlayYoutubeVideo("DA51I8PuiHw");
                     break;
-                case 7:
+                case "7":
                     PlayYoutubeVideo("wNexVdG4EwM");
                     break;
-                case 8:
+                case "8":
                     PlayYoutubeVideo("BJWjbhnOLbE");
                     break;
-                case 9:
+                case "9":
                     PlayYoutubeVideo("lJOVYaXvH2c");
                     break;
-                case 10:
+                case "10":
                     PlayYoutubeVideo("qucsu1iSM4c");
                     break;
-                case 11:
+                case "11":
                     PlayYoutubeVideo("6fo_zG8ktIo");
                     break;
-                case 12:
+                case "12":
                     PlayYoutubeVideo("HF1DvS9Y-7Y");
                     break;
-                case 13:
+                case "13":
                     PlayYoutubeVideo("Xyci1-x5Zt4");
                     break;
-                case 14:
+                case "14":
                     PlayYoutubeVideo("X9fvHK2ZN6s");
                     break;
-                case 15:
+                case "15":
                     PlayYoutubeVideo("8ExOVKeg120");
                     break;
-                case 16:
+                case "16":
                     PlayYoutubeVideo("vvUw2WWwqJw");
                     break;
-                case 17:
+                case "17":
                     PlayYoutubeVideo("QE9hcf2QWaY");
                     break;
-                case 18:
+                case "18":
                     PlayYoutubeVideo("k1cxL22IEUc");
                     break;
 
@@ -110,23 +127,32 @@ namespace AdvocateHealthCare
         DispatcherTimer dispatcherTimer;
         public async void PlayYoutubeVideo(string _videoId)
         {
-            var url = await YouTube.GetVideoUriAsync(_videoId, YouTubeQuality.Quality1080P);
-            var YoutubePlayer = new MediaElement();
-            mediaYoutube.Source = url.Uri;
-            mediaYoutube.Play();
-            mediaYoutube.Volume = 40;
-            mediaYoutube.MediaOpened += new RoutedEventHandler(MediaYoutube_MediaOpened);
 
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += dispatcherTimer_Tick;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            dispatcherTimer.Start();
-            //TimerStatus.Text = "dispatcherTimer.IsEnabled = " + dispatcherTimer.IsEnabled + "\n";
-            //System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            //dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            //dispatcherTimer.Interval = new TimeSpan(0, 5, 0);
-            //dispatcherTimer.Start();
+            if (_videoId != "VideoIDFromHomePage")
+            {
+                var url = await YouTube.GetVideoUriAsync(_videoId, YouTubeQuality.Quality720P);
+                var YoutubePlayer = new MediaElement();
+
+                VideoUriX = url.Uri;
+                mediaYoutube.Source = url.Uri;
+                mediaYoutube.Play();
+                mediaYoutube.Volume = 40;
+                mediaYoutube.MediaOpened += new RoutedEventHandler(MediaYoutube_MediaOpened);
+
+                dispatcherTimer = new DispatcherTimer();
+                dispatcherTimer.Tick += dispatcherTimer_Tick;
+                dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+                dispatcherTimer.Start();
+                //TimerStatus.Text = "dispatcherTimer.IsEnabled = " + dispatcherTimer.IsEnabled + "\n";
+                //System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+                //dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+                //dispatcherTimer.Interval = new TimeSpan(0, 5, 0);
+                //dispatcherTimer.Start();
+            }
         }
+        public void video()
+        { }
+
         int time;
         private void MediaYoutube_MediaOpened(object sender, RoutedEventArgs e)
         {
@@ -163,10 +189,17 @@ namespace AdvocateHealthCare
             imgPause.Visibility = Visibility.Visible;
             dispatcherTimer.Stop();
         }
+
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
             mediaYoutube.Stop();
             dispatcherTimer.Stop();
+            time = (int)mediaYoutube.NaturalDuration.TimeSpan.TotalSeconds;
+            double inMinutes = time / 60;
+            //dispatcherTimer =null;
+
+
+            //  dispatcherTimer = new DispatcherTimer();
         }
         private void btnPLay_Click(object sender, RoutedEventArgs e)
         {
@@ -176,11 +209,11 @@ namespace AdvocateHealthCare
         }
         private void BackNav_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if (videoSource == "Home")
+            if (VideoValue == "VideoIDFromHomePage")
             {
                 this.Frame.Navigate(typeof(HomePage));
             }
-            else
+            else if (videoSource == null)
             {
                 this.Frame.Navigate(typeof(VideosPage));
             }
@@ -189,3 +222,4 @@ namespace AdvocateHealthCare
 
     }
 }
+

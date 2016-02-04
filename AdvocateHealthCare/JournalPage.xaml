@@ -12,7 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="SplitViewStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <template3:MyDataTemplateSelector3 x:Key="mytemplate3" FirstItemStyle="{StaticResource JournalFirstItemTemplate}" ItemStyle="{StaticResource JournalItemstemplate}"/>
+            <!--<template3:MyDataTemplateSelector3 x:Key="mytemplate3" FirstItemStyle="{StaticResource JournalFirstItemTemplate}" ItemStyle="{StaticResource JournalItemstemplate}"/>
             <DataTemplate x:Name="JournalFirstItemTemplate" >
                 <Grid Width="399"  Height="256" Background="#ffffff" Margin="0,0,0,0" x:Name="addJournal" Tapped="addJournal_Tapped" >
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
@@ -22,9 +22,9 @@
                         <TextBlock Text="New Journal Entry" Margin="0,15,0,0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
                     </StackPanel>
                 </Grid>
-            </DataTemplate>
-            <DataTemplate x:Name="JournalItemstemplate">
-                <Grid Width="399"  Height="256" Margin="0,0,0,0" Background="#FEFEFE">
+            </DataTemplate>-->
+            <!--<DataTemplate x:Name="JournalItemstemplate">
+                <Grid Width="399"  Height="256" Margin="0,0,0,0"  Background="#FEFEFE">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.4*"/>
                         
@@ -54,10 +54,10 @@
                             </StackPanel>
                         </Grid>
                     </Grid>
-                    <TextBox Width="392" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Grid.Row="1" Text="{Binding _JournalInfo}"  TextWrapping="Wrap" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" BorderThickness="0"></TextBox>
+                    <TextBox Width="392" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Grid.Row="1" Text="{Binding _JournalInfo}"  TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0"></TextBox>
                     <Image Grid.Row="1" Source="{Binding imgProp}" Stretch="Fill" Height="100" ></Image>
                 </Grid>
-            </DataTemplate>
+            </DataTemplate>-->
 
         </ResourceDictionary>
     </Page.Resources>
@@ -74,7 +74,7 @@
             <TextBlock Text="Journals" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="20" Margin="10,0,0,0"></TextBlock>
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                    <Canvas  Margin="0,0,30,0" Tapped="Notificationgridtapped" >
+                    <Canvas  Margin="0,0,40,0" Tapped="Notificationgridtapped" >
                         <Image  x:Name="notificationsImg"  Source="/Assets/notifications.png" />
                         <Ellipse Canvas.Left="10" Fill="#E5302B" x:Name="ec"  Width="18" Height="18" />
                         <TextBlock Canvas.Left="15" Canvas.Top="0" Margin="0,0,0,0" FontSize="12" x:Name="txtNotificationCount" Foreground="#ffffff"></TextBlock>
@@ -93,21 +93,26 @@
                 </DataTemplate>
             </Pivot.HeaderTemplate>
             <Pivot.Items>
-                <PivotItem Header="All" >
-                    <Grid>
+                <PivotItem Header="" >
+                    <!--<Grid Margin="0,25,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <GridView x:Name="gridjournal" Grid.Row="0" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ItemContainerStyle="{StaticResource GridViewItemExpanded}" ItemTemplateSelector="{StaticResource mytemplate3}" Margin="0,0,0,0">
                             <GridView.ItemsPanel >
                                 <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
+                                    <VariableSizedWrapGrid  Orientation="Horizontal"></VariableSizedWrapGrid>
                                 </ItemsPanelTemplate>
 
                             </GridView.ItemsPanel>
                         </GridView>
-                    </Grid>
+                    </Grid>-->
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
 
+                        <Grid Name="JournaltileGrid"   Margin="0,5,0,5" Background="#EEEEEE">
+
+                        </Grid>
+                    </ScrollViewer>
                 </PivotItem>
 
 

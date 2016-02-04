@@ -27,7 +27,7 @@
 
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                    <Canvas  Margin="0,0,30,0" Tapped="Notificationgridtapped"  >
+                    <Canvas  Margin="0,0,40,0" Tapped="Notificationgridtapped"  >
                         <Image  x:Name="notificationsImg" Source="/Assets/notifications.png" />
                         <Ellipse Canvas.Left="10" Fill="#E5302B" x:Name="ec"  Width="18" Height="18" />
                         <TextBlock Canvas.Left="15" Canvas.Top="0" Margin="0,0,0,0" FontSize="12" x:Name="txtNotificationCount" Foreground="#ffffff"></TextBlock>
@@ -52,8 +52,8 @@
                     <Grid Background="White">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.1*"></RowDefinition>
-                            <RowDefinition Height="0.1*"></RowDefinition>
-                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="0.15*"></RowDefinition>
+                            <RowDefinition Height="0.2*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0"></Grid>
@@ -78,8 +78,8 @@
                             <TextBox BorderBrush="#E6D6B9" BorderThickness="0,0,0,1" Height="30" FontSize="18"   x:Name="txtquestionvalue"  PlaceholderText="Enter Title....">
                             </TextBox>
                         </Grid>-->
-                        <Grid Grid.Row="2" VerticalAlignment="Top"> 
-                            <TextBox  Margin="30,20,0,0" Padding="2" Height="20" BorderBrush="#E6D6B9" BorderThickness="0,0,0,1" FontSize="18"  x:Name="txtquestionvalue" TextWrapping="Wrap" PlaceholderText="Entry Title....">
+                        <Grid Grid.Row="2" VerticalAlignment="Top">
+                            <TextBox Style= "{StaticResource textplaceholderforground}" Margin="30,15,0,0" Padding="2" Height="25" BorderBrush="#E6D6B9" BorderThickness="0,0,0,1" FontSize="18"  x:Name="txtquestionvalue" TextWrapping="Wrap" PlaceholderText="Entry Title....">
                             </TextBox>
                         </Grid>
                         <!--<Grid Grid.Row="3" Margin="30,30,0,0">
@@ -87,7 +87,7 @@
 
                             </TextBox>
                         </Grid>-->
-                        <Grid Grid.Row="3" Margin="26,30,0,0" VerticalAlignment="Top">
+                        <Grid Grid.Row="3" Margin="26,0,0,0" VerticalAlignment="Top">
                             <TextBox  BorderBrush="white" BorderThickness="0" FontSize="15" x:Name="txtquestioninfo"  TextWrapping="Wrap" PlaceholderText="Your Entry here...">
 
                             </TextBox>

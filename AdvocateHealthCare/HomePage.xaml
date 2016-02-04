@@ -5,7 +5,7 @@
     xmlns:local="using:AdvocateHealthCare"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"  Loaded="Page_Loaded" >
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -28,12 +28,12 @@
 
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                    <Canvas  Margin="0,0,30,0" Tapped="Notificationgridtapped" >
+                    <Canvas  Margin="0,0,40,0" Tapped="Notificationgridtapped" >
                         <Image  x:Name="notificationsImg"  Source="/Assets/notifications.png" />
                         <Ellipse Canvas.Left="10" Fill="#E5302B" x:Name="ec"  Width="18" Height="18" />
                         <TextBlock Canvas.Left="15" Canvas.Top="0" Margin="0,0,0,0" FontSize="12" x:Name="txtNotificationCount" Foreground="#ffffff"></TextBlock>
                     </Canvas>
-                    <SearchBox QuerySubmitted="mySearchBox_QuerySubmitted" Margin="8,0,5,0" VerticalAlignment="Center" x:Name="mySearchBox" BorderThickness="0" PlaceholderText="Search" Background="#ffffff"  Height="30" Width="200" />
+                    <SearchBox QuerySubmitted="mySearchBox_QuerySubmitted" Margin="0,0,5,0" VerticalAlignment="Center" x:Name="mySearchBox" BorderThickness="0" PlaceholderText="Search" Background="#ffffff"  Height="30" Width="200" />
                 </StackPanel>
             </Grid>
         </Grid>
@@ -55,11 +55,11 @@
 
                             <Grid>
                                 <Grid.RowDefinitions >
-                                    <RowDefinition Height="0.88*"></RowDefinition>
+                                    <!--<RowDefinition Height="0.88*"></RowDefinition>-->
                                     <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <Grid Grid.Row="0" Margin="8,0,0,0 " Background="#EEEEEE">
+                                <!--<Grid Grid.Row="0" Margin="8,0,0,0 " Background="#EEEEEE">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                         <ColumnDefinition Width="0.035*"></ColumnDefinition>
@@ -108,47 +108,16 @@
                                     </Grid>
                                     <Grid Grid.Column="3">
                                     </Grid>
-                                </Grid>
+                                </Grid>-->
 
-                                <Grid Grid.Row="1" Margin="0,20,10,0">
+                                <Grid Grid.Row="1" Margin="0,10,0,10">
                                     <ProgressRing IsActive="True" Height="60" Width="60" x:Name="rngProgress" Visibility="Collapsed"></ProgressRing>
-                                    <Grid Background="#EEEEEE">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <GridView Grid.Row="0" x:Name="grdDeliveryDetails"   ItemContainerStyle="{StaticResource GridViewItemExpanded}"    ScrollViewer.VerticalScrollBarVisibility="Hidden"  SelectionChanged="grdDeliveryDetails_SelectionChanged">
+                                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                        <Grid Name="tileGrid"    Margin="0,0,40,0" Background="#EEEEEE">
 
-                                            <GridView.ItemsPanel >
-                                                <ItemsPanelTemplate>
+                                        </Grid>
+                                    </ScrollViewer>
 
-                                                    <VariableSizedWrapGrid    Orientation="Horizontal"></VariableSizedWrapGrid>
-                                                </ItemsPanelTemplate>
-                                            </GridView.ItemsPanel>
-                                            <GridView.ItemTemplate>
-                                                <DataTemplate>
-
-
-                                                    <Grid Margin="0,0,0,0" MaxHeight="200" MaxWidth="225" Background="#FEFEFE" VerticalAlignment="Center"  HorizontalAlignment="Center"  >
-
-                                                        <!--SearchHere-->
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="*"></RowDefinition>
-                                                            <RowDefinition Height="0.2*"></RowDefinition>
-                                                            <RowDefinition Height="0.2*"></RowDefinition>
-                                                        </Grid.RowDefinitions>
-
-                                                        <Image  Grid.Row="0" Source="{Binding DeliveryUrl}" Stretch="Fill"  ></Image>
-
-                                                        <TextBlock Grid.Row="1" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20"   Foreground="#DF6C3F"  Text="{Binding DeliveryTitle}" Margin="10,0,0,0"></TextBlock>
-                                                        <TextBlock Grid.Row="2" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="17"  Foreground="Black"  Text="{Binding DeliveryInfo}" Margin="10,0,0,0"></TextBlock>
-                                                    </Grid>
-
-
-                                                </DataTemplate>
-                                            </GridView.ItemTemplate>
-
-                                        </GridView>
-                                    </Grid>
                                 </Grid>
                             </Grid>
                         </ScrollViewer>
@@ -244,40 +213,14 @@
                         </ScrollViewer>-->
                     </PivotItem>
                     <PivotItem Header="General">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <Grid Background="#EFEFEF">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GridView Grid.Row="0" x:Name="grdDeliveryDetailsGeneral"  ItemContainerStyle="{StaticResource GridViewItemExpanded}"  >
-                                    <GridView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <VariableSizedWrapGrid  Orientation="Horizontal"></VariableSizedWrapGrid>
-                                        </ItemsPanelTemplate>
-                                    </GridView.ItemsPanel>
-                                    <GridView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Margin="0,0,0,0" MaxHeight="200" MaxWidth="225" Background="#FFFFFF"  >
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*"></RowDefinition>
-                                                    <RowDefinition Height="0.2*"></RowDefinition>
-                                                    <RowDefinition Height="0.2*"></RowDefinition>
-
-                                                </Grid.RowDefinitions>
-                                                <Image Grid.Row="0" Source="{Binding DeliveryUrl}" Stretch="Fill"></Image>
-                                                <TextBlock Grid.Row="1" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20"  Foreground="#DF6C3F"  Text="{Binding DeliveryTitle}" Margin="10,0,0,0"></TextBlock>
-                                                <TextBlock Grid.Row="2" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="17"  Foreground="Black"  Text="{Binding DeliveryInfo}" Margin="10,0,0,0"></TextBlock>
-
-                                            </Grid>
-                                        </DataTemplate>
-                                    </GridView.ItemTemplate>
-                                </GridView>
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                            <Grid Name="Generaltilegrid"    Margin="0,0,40,0" Background="#EEEEEE">
                             </Grid>
                         </ScrollViewer>
                     </PivotItem>
                     <PivotItem Header="Pre Delivery">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <Grid Background="#EFEFEF">
+                            <!--<Grid Background="#EFEFEF" Margin="0,20,0,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
@@ -289,7 +232,7 @@
                                     </GridView.ItemsPanel>
                                     <GridView.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid Margin="0,0,0,0" MaxHeight="200" MaxWidth="225" Background="#FFFFFF" >
+                                            <Grid Margin="0,0,0,0"   MaxHeight="200" MaxWidth="225" Background="#FFFFFF" >
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="*"></RowDefinition>
                                                     <RowDefinition Height="0.2*"></RowDefinition>
@@ -304,70 +247,24 @@
                                         </DataTemplate>
                                     </GridView.ItemTemplate>
                                 </GridView>
+                            </Grid>-->
+                            <Grid Name="Predeliverytilegrid"   Margin="0,0,40,0" Background="#EEEEEE">
+
                             </Grid>
                         </ScrollViewer>
+
                     </PivotItem>
                     <PivotItem Header="Delivery">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <Grid Background="#EFEFEF">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GridView Grid.Row="0" x:Name="grdDeliveryDetails2"  ItemContainerStyle="{StaticResource GridViewItemExpanded}">
-                                    <GridView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <VariableSizedWrapGrid Orientation="Horizontal"></VariableSizedWrapGrid>
-                                        </ItemsPanelTemplate>
-                                    </GridView.ItemsPanel>
-                                    <GridView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Margin="0,0,0,0" MaxHeight="200" MaxWidth="225" Background="#FFFFFF" >
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*"></RowDefinition>
-                                                    <RowDefinition Height="0.2*"></RowDefinition>
-                                                    <RowDefinition Height="0.2*"></RowDefinition>
+                            <Grid Name="deliverytilegrid"   Margin="0,0,40,0" Background="#EEEEEE">
 
-                                                </Grid.RowDefinitions>
-                                                <Image Grid.Row="0" Source="{Binding DeliveryUrl}" Stretch="Fill"></Image>
-                                                <TextBlock Grid.Row="1" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20"  Foreground="#DF6C3F"  Text="{Binding DeliveryTitle}" Margin="10,0,0,0"></TextBlock>
-                                                <TextBlock Grid.Row="2" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="17"  Foreground="Black"  Text="{Binding DeliveryInfo}" Margin="10,0,0,0"></TextBlock>
-
-                                            </Grid>
-                                        </DataTemplate>
-                                    </GridView.ItemTemplate>
-                                </GridView>
                             </Grid>
                         </ScrollViewer>
                     </PivotItem>
                     <PivotItem Header="Post Delivery">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <Grid Background="#EFEFEF">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GridView Grid.Row="0" x:Name="grdDeliveryDetails3"  ItemContainerStyle="{StaticResource GridViewItemExpanded}">
-                                    <GridView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <VariableSizedWrapGrid  Orientation="Horizontal"></VariableSizedWrapGrid>
-                                        </ItemsPanelTemplate>
-                                    </GridView.ItemsPanel>
-                                    <GridView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Margin="0,0,0,0" MaxHeight="200" MaxWidth="225" Background="#FFFFFF" >
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*"></RowDefinition>
-                                                    <RowDefinition Height="0.2*"></RowDefinition>
-                                                    <RowDefinition Height="0.2*"></RowDefinition>
+                            <Grid Name="postdeliverytilegrid"   Margin="0,0,40,0" Background="#EEEEEE">
 
-                                                </Grid.RowDefinitions>
-                                                <Image Grid.Row="0" Source="{Binding DeliveryUrl}" Stretch="Fill"></Image>
-                                                <TextBlock Grid.Row="1" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20"  Foreground="#DF6C3F"  Text="{Binding DeliveryTitle}" Margin="10,0,0,0"></TextBlock>
-                                                <TextBlock Grid.Row="2" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="17"  Foreground="Black"  Text="{Binding DeliveryInfo}" Margin="10,0,0,0"></TextBlock>
-
-                                            </Grid>
-                                        </DataTemplate>
-                                    </GridView.ItemTemplate>
-                                </GridView>
                             </Grid>
                         </ScrollViewer>
                     </PivotItem>

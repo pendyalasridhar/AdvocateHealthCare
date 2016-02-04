@@ -14,9 +14,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid >
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.055*"/>
+            <RowDefinition Height="48*" MaxHeight="48"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Background="#70729F">
@@ -29,7 +29,7 @@
 
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                    <Canvas  Margin="0,0,30,0" Tapped="Notificationgridtapped" >
+                    <Canvas  Margin="0,0,40,0" Tapped="Notificationgridtapped" >
                         <Image  x:Name="notificationsImg"  Source="/Assets/notifications.png" />
                         <Ellipse Canvas.Left="10" Fill="#E5302B" x:Name="ec"  Width="18" Height="18" />
                         <TextBlock Canvas.Left="15" Canvas.Top="0" Margin="0,0,0,0" FontSize="12" x:Name="txtNotificationCount" Foreground="#ffffff"></TextBlock>
@@ -38,7 +38,7 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Pivot Style="{StaticResource PivotStyle}"  SelectionChanged="Pivot_SelectionChanged"  Grid.Row="1"  Opacity="1"  FontFamily="Segoe UI" FontSize="24"  >
+        <Pivot Style="{StaticResource PivotStyle}"  SelectionChanged="Pivot_SelectionChanged"  Grid.Row="1"  FontFamily="Segoe UI" FontSize="24"  >
             <Pivot.HeaderTemplate >
                 <DataTemplate>
                     <Grid>
@@ -51,10 +51,10 @@
                 <PivotItem Header="All" FontSize="16">
                     <!--<Border BorderThickness="1" BorderBrush="Red">-->
                     <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                        <Grid   x:Name="GridDiet">
+                        <Grid   x:Name="GridDiet" >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.65*"/>
-                                <ColumnDefinition Width="0.35*"/>
+                                <ColumnDefinition Width="0.70*"/>
+                                <ColumnDefinition Width="0.30*"/>
                             </Grid.ColumnDefinitions>
                             <!--<Border BorderThickness="1" BorderBrush="Red">-->
 
@@ -75,7 +75,7 @@
 
                                     <!--<StackPanel Orientation="Horizontal">-->
                                     <TextBlock Text="Diet and Pregnancy" Foreground="#E8764D" FontSize="20" Margin="0,0,0,0" HorizontalAlignment="Left"  VerticalAlignment="Center"></TextBlock>
-                                    <Image Source="Assets/share.png" x:Name="dietAndPregnancyShare"  Height="25" Tapped="dietAndPregnancyShare_Tapped" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="175,4,0,0"></Image>
+                                    <Image Source="Assets/share.png" x:Name="dietAndPregnancyShare"  Height="25" Tapped="dietAndPregnancyShare_Tapped" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="176,4,0,0"></Image>
                                     <Image Source=" /Assets/redirect.png" x:Name="getback" Height="30"  HorizontalAlignment="Right" Tapped="GetbackButton_Click" Margin="0,5,0,0"/>
                                     <!--</StackPanel>-->
 
@@ -104,10 +104,10 @@
      Now that you're a mum-to-be, it is important to eat well. This will make sure you get all the nutrients you and your developing baby need.
                                                 </TextBlock>
 
-                                                <TextBlock TextWrapping="Wrap" Padding="4" x:Name="txtvisible3" Visibility="Collapsed">
+                                                <TextBlock TextWrapping="Wrap"  x:Name="txtvisible3" Visibility="Collapsed">
                                        If you know you haven't been eating as well as you could,it is even more important to start having nutritious,well-balanced meals.Your daily meals should include a variety of foods from the four main food groups shown in the Food Standards Agency's eatwell plate:
                                                 </TextBlock>
-                                                <TextBlock TextWrapping="Wrap" Padding="4"  x:Name="txtvisible4" Visibility="Collapsed" >
+                                                <TextBlock TextWrapping="Wrap"   x:Name="txtvisible4" Visibility="Collapsed" >
                                        <Bold > Fruits and vegetables.</Bold>  You can buy these fresh, frozen, tinned, dried or juiced. Aim for at least five portions each day.
                                                 </TextBlock>
                                                 <!--<StackPanel Orientation="Vertical" Padding="5">-->
@@ -244,9 +244,9 @@ Your body becomes more efficient when you're pregnant, and makes even better use
                                         </Grid.RowDefinitions>
                                         <Grid Grid.Row="0" Background="White">
                                             <StackPanel>
-                                                <TextBox x:Name="JorQtext" BorderThickness="1" FontSize="12" BorderBrush="#cecece" Visibility="Visible" PlaceholderText="Add your notes here..." VerticalAlignment="Top" Height="400"  TextWrapping="Wrap" Margin="0,0,0,0" />
-                                                <TextBox x:Name="JorQtext1" BorderThickness="1" Visibility="Collapsed" FontSize="12" BorderBrush="#cecece" PlaceholderText="Add your questions here..." VerticalAlignment="Top" Height="400"  TextWrapping="Wrap" Margin="0,0,0,0" />
-                                                <Button Click="saveJorQnotes" Foreground="#ffffff"  HorizontalAlignment="Right" Margin="0,-50,10,0"  Width="132"  Background="#E5673A">Save</Button>
+                                                <TextBox x:Name="JorQtext" BorderThickness="1" FontSize="12" BorderBrush="#cecece" Visibility="Visible" PlaceholderText="Add your notes here..." VerticalAlignment="Top" Height="375"  TextWrapping="Wrap" Margin="0,0,0,0" />
+                                                <TextBox x:Name="JorQtext1" BorderThickness="1" Visibility="Collapsed" FontSize="12" BorderBrush="#cecece" PlaceholderText="Add your questions here..." VerticalAlignment="Top" Height="375"  TextWrapping="Wrap" Margin="0,0,0,0" />
+                                                <Button Click="saveJorQnotes" Foreground="#ffffff"  HorizontalAlignment="Right" Margin="0,-65,15,0"  Width="132"  Background="#E5673A">Save</Button>
                                             </StackPanel>
                                         </Grid>
                                         <!--<Grid  Grid.Row="1" Background="Red">
@@ -275,19 +275,19 @@ Your body becomes more efficient when you're pregnant, and makes even better use
                     <!--<Grid>
                             <TextBlock Text="Content of pivot 3" />
                         </Grid>-->
-                    <Grid Background="#EFEFEF">
+                    <!--<Grid Background="#EFEFEF" Margin="0,20,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <GridView Grid.Row="0" x:Name="grdDeliveryDetailsGeneral">
+                        <GridView Grid.Row="0" x:Name="grdDeliveryDetailsGeneral" ItemContainerStyle="{StaticResource GridViewItemExpanded}"    ScrollViewer.VerticalScrollBarVisibility="Hidden">
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
+                                    <VariableSizedWrapGrid Orientation="Horizontal"></VariableSizedWrapGrid>
                                 </ItemsPanelTemplate>
                             </GridView.ItemsPanel>
                             <GridView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Height="240" Width="400" Background="#FFFFFF" Margin="20,20,0,0">
+                                    <Grid   MaxHeight="200" MaxWidth="225" Background="#FFFFFF" Margin="0,0,0,0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*"></RowDefinition>
                                             <RowDefinition Height="0.2*"></RowDefinition>
@@ -302,100 +302,36 @@ Your body becomes more efficient when you're pregnant, and makes even better use
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
-                    </Grid>
+                    </Grid>-->
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                        <Grid Name="GeneraltileGrid"   Margin="0,0,0,0" >
+
+                        </Grid>
+                    </ScrollViewer>
                 </PivotItem>
                 <PivotItem Header="Pre Delivery">
                     <!--<Grid>
                             <TextBlock Text="Content of pivot 3" />
                         </Grid>-->
-                    <Grid Background="#EFEFEF">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <GridView Grid.Row="0" x:Name="grdDeliveryDetails1">
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="240" Width="400" Background="#FFFFFF" Margin="20,20,0,0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                        <Grid Name="predeliverytileGrid"   Margin="0,0,0,0" >
 
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Row="0" Source="{Binding DeliveryUrl}" Stretch="Fill"></Image>
-                                        <TextBlock Grid.Row="1" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20"  Foreground="#DF6C3F"  Text="{Binding DeliveryTitle}" Margin="10,0,0,0"></TextBlock>
-                                        <TextBlock Grid.Row="2" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="17"  Foreground="Black"  Text="{Binding DeliveryInfo}" Margin="10,0,0,0"></TextBlock>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </Grid>
+                        </Grid>
+                    </ScrollViewer>
                 </PivotItem>
                 <PivotItem Header="Delivery">
-                    <Grid Background="#EFEFEF">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <GridView Grid.Row="0" x:Name="grdDeliveryDetails2">
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="240" Width="400" Background="#FFFFFF" Margin="20,20,0,0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                        <Grid Name="HdeliverytileGrid"   Margin="0,0,0,0" >
 
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Row="0" Source="{Binding DeliveryUrl}" Stretch="Fill"></Image>
-                                        <TextBlock Grid.Row="1" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20"  Foreground="#DF6C3F"  Text="{Binding DeliveryTitle}" Margin="10,0,0,0"></TextBlock>
-                                        <TextBlock Grid.Row="2" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="17"  Foreground="Black"  Text="{Binding DeliveryInfo}" Margin="10,0,0,0"></TextBlock>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </Grid>
+                        </Grid>
+                    </ScrollViewer>
                 </PivotItem>
                 <PivotItem Header="Post Delivery">
-                    <Grid Background="#EFEFEF">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <GridView Grid.Row="0" x:Name="grdDeliveryDetails3">
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="240" Width="400" Background="#FFFFFF" Margin="20,20,0,0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                        <Grid Name="postdeliverytileGrid"   Margin="0,0,0,0" >
 
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Row="0" Source="{Binding DeliveryUrl}" Stretch="Fill"></Image>
-                                        <TextBlock Grid.Row="1" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20"  Foreground="#DF6C3F"  Text="{Binding DeliveryTitle}" Margin="10,0,0,0"></TextBlock>
-                                        <TextBlock Grid.Row="2" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="17"  Foreground="Black"  Text="{Binding DeliveryInfo}" Margin="10,0,0,0"></TextBlock>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </Grid>
+                        </Grid>
+                    </ScrollViewer>
                 </PivotItem>
 
             </Pivot.Items>

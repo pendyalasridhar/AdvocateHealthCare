@@ -6,6 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="SplitViewStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid Background="#eeeeee">
         <Grid.RowDefinitions>
             <RowDefinition Height="48*" MaxHeight="48"/>
@@ -21,7 +28,7 @@
 
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                    <Canvas  Margin="0,0,30,0"  Tapped="Notificationgridtapped" >
+                    <Canvas  Margin="0,0,40,0"  Tapped="Notificationgridtapped" >
                         <Image  x:Name="notificationsImg" Source="/Assets/notifications.png" />
                         <Ellipse Canvas.Left="10" Fill="#E5302B" x:Name="ec"  Width="18" Height="18" />
                         <TextBlock Canvas.Left="15" Canvas.Top="0" Margin="0,0,0,0" FontSize="12" x:Name="txtNotificationCount" Foreground="#ffffff"></TextBlock>
@@ -31,7 +38,7 @@
             </Grid>
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <Pivot  Opacity="1"  FontFamily="Segoe UI" FontSize="24" >
+            <Pivot Style="{StaticResource PivotStyle}" Opacity="1"  FontFamily="Segoe UI" FontSize="24" >
                 <Pivot.HeaderTemplate>
                     <DataTemplate>
                         <Grid>
@@ -40,20 +47,20 @@
                     </DataTemplate>
                 </Pivot.HeaderTemplate>
                 <Pivot.Items>
-                    <PivotItem Header="General" >
-                        <Grid Background="#EFEFEF">
+                    <PivotItem Header="" >
+                        <!--<Grid Background="#EFEFEF" Margin="0,20,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <GridView Grid.Row="0" x:Name="grdSearch" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ItemContainerStyle="{StaticResource GridViewItemExpanded}" SelectionChanged="grdSearch_SelectionChanged">
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
+                                        <VariableSizedWrapGrid  Orientation="Horizontal"></VariableSizedWrapGrid>
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                                 <GridView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Height="240" Width="400" Background="#FFFFFF" Margin="20,20,0,0">
+                                        <Grid MaxHeight="200" MaxWidth="225" Background="#FFFFFF" Margin="0,0,0,0">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*"></RowDefinition>
                                                 <RowDefinition Height="0.2*"></RowDefinition>
@@ -68,7 +75,11 @@
                                     </DataTemplate>
                                 </GridView.ItemTemplate>
                             </GridView>
-                        </Grid>
+                        </Grid>-->
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                            <Grid  Name="searchgrid"  Background="#EFEFEF" Margin="0,0,40,0">
+                            </Grid>
+                        </ScrollViewer>
                     </PivotItem>
                 </Pivot.Items>
             </Pivot>

@@ -12,13 +12,13 @@ xmlns:template="using:AdvocateHealthCare.Model">
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="SplitViewStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <template:MyDataTemplateSelector x:Key="mytemplate" FirstItemStyle="{StaticResource FirstItemTemplate}" ItemStyle="{StaticResource Itemstemplate}"/>
+            <!--<template:MyDataTemplateSelector x:Key="mytemplate" FirstItemStyle="{StaticResource FirstItemTemplate}" ItemStyle="{StaticResource Itemstemplate}"/>
             <DataTemplate x:Key="FirstItemTemplate">
                 <Grid Width="399" Height="256" Background="#ffffff" Margin="0,0,0,0">
-                    <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">-->
+                    --><!--<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">--><!--
                     <Image x:Name="imgUserCapture" Source="Assets/capture_photo.png" Height="100" ></Image>
-                    <!--<TextBlock Text="Capture Photo"></TextBlock>-->
-                    <!--</StackPanel>-->
+                    --><!--<TextBlock Text="Capture Photo"></TextBlock>-->
+                    <!--</StackPanel>--><!--
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="Itemstemplate">
@@ -48,7 +48,7 @@ xmlns:template="using:AdvocateHealthCare.Model">
                     </Grid>
                     <Image Source="{Binding imgProp}" Grid.Row="2" Stretch="Fill" HorizontalAlignment="Left" Margin="0,10,0,0"></Image>
                 </Grid>
-            </DataTemplate>
+            </DataTemplate>-->
         </ResourceDictionary>
     </Page.Resources>
     <Grid Background="#eeeeee">
@@ -65,7 +65,7 @@ xmlns:template="using:AdvocateHealthCare.Model">
             <TextBlock Text="My Photo Gallery" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" Foreground="White" FontSize="20" Margin="10,0,0,0"></TextBlock>
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                    <Canvas  Margin="0,0,30,0" Tapped="Notificationgridtapped" >
+                    <Canvas  Margin="0,0,40,0" Tapped="Notificationgridtapped" >
                         <Image  x:Name="notificationsImg"  Source="/Assets/notifications.png" />
                         <Ellipse Canvas.Left="10" Fill="#E5302B" x:Name="ec"  Width="18" Height="18" />
                         <TextBlock Canvas.Left="15" Canvas.Top="0" Margin="0,0,0,0" FontSize="12" x:Name="txtNotificationCount" Foreground="#ffffff"></TextBlock>
@@ -84,8 +84,8 @@ xmlns:template="using:AdvocateHealthCare.Model">
                 </DataTemplate>
             </Pivot.HeaderTemplate>
             <Pivot.Items>
-                <PivotItem Header="Gallery" >
-                    <Grid Background="#F0F0F0">
+                <PivotItem Header="" >
+                    <!--<Grid Background="#F0F0F0" Margin="0,20,0,0">
                         <Grid Background="#EFEFEF" >
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -93,12 +93,23 @@ xmlns:template="using:AdvocateHealthCare.Model">
                             <GridView x:Name="gridGallary" Grid.Row="0" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ItemContainerStyle="{StaticResource GridViewItemExpanded}" ItemTemplateSelector="{StaticResource mytemplate}" SelectionChanged="gridGallary_SelectionChanged">
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
+                                        <VariableSizedWrapGrid  Orientation="Horizontal"></VariableSizedWrapGrid>
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
+                                
+                                            
                             </GridView>
                         </Grid>
-                    </Grid>
+                    </Grid>-->
+                  
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                       
+                        <Grid Name="GalleryGrid"   Margin="0,5,0,5" Background="#EEEEEE">
+                            <ProgressRing x:Name="pring1"  Foreground="AliceBlue"  IsActive="True" Visibility="Visible"
+                           Margin="0,0,0,0" Width="113" Height="80">
+                            </ProgressRing>
+                        </Grid>
+                    </ScrollViewer>
                 </PivotItem>
             </Pivot.Items>
         </Pivot>

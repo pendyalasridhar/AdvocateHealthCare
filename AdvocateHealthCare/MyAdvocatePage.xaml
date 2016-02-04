@@ -14,7 +14,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid >
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="48*" MaxHeight="48"/>
             <RowDefinition/>
@@ -29,7 +29,7 @@
 
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                    <Canvas  Margin="0,0,30,0" Tapped="Notificationgridtapped" >
+                    <Canvas  Margin="0,0,40,0" Tapped="Notificationgridtapped" >
                         <Image  x:Name="notificationsImg"  Source="/Assets/notifications.png" />
                         <Ellipse Canvas.Left="10" Fill="#E5302B" x:Name="ec"  Width="18" Height="18" />
                         <TextBlock Canvas.Left="15" Canvas.Top="0" Margin="0,0,0,0" FontSize="12" x:Name="txtNotificationCount" Foreground="#ffffff"></TextBlock>
@@ -38,7 +38,7 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Pivot Style="{StaticResource PivotStyle}"  SelectionChanged="Pivot_SelectionChanged"  Grid.Row="1"  Opacity="1"  FontFamily="Segoe UI" FontSize="24"  >
+        <Pivot Style="{StaticResource PivotStyle}"  SelectionChanged="Pivot_SelectionChanged"  Grid.Row="1"   FontFamily="Segoe UI" FontSize="24"  >
             <Pivot.HeaderTemplate >
                 <DataTemplate>
                     <Grid>
@@ -57,81 +57,83 @@
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                                <RowDefinition Height="0.000*"></RowDefinition>
+                                <RowDefinition Height="0.18*"></RowDefinition>
+                                <RowDefinition Height="0.000*"></RowDefinition>
+                                <RowDefinition Height="0.35*"></RowDefinition>
+                                <RowDefinition Height="0.01*"></RowDefinition>
                                 <RowDefinition Height="0.2*"></RowDefinition>
-                                <RowDefinition Height="0.001*"></RowDefinition>
-                                <RowDefinition Height="0.45*"></RowDefinition>
-                                <RowDefinition Height="0.001*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="0.03*"></RowDefinition>
-                                <RowDefinition Height="0.3*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0" >
                                 <TextBlock FontSize="33" Foreground="#E6673A" Text="MyAdvocate"  Margin="5,5,0,0"></TextBlock>
                                 <Image Source=" /Assets/redirect.png" x:Name="getback" HorizontalAlignment="right"  Tapped="GetbackButton_Click" Height="30"  Margin="0,0,0,0"></Image>
                             </Grid>
-                            <Grid Grid.Row="1" ></Grid>
-                            <TextBlock FontSize="17" TextWrapping="Wrap" Text="When you make an appointment with one of Advocate Medical Group's 1,200 top doctors, you gain access to MyAdvocate, our patient information portal. And now with our mobile app, whether you're at work or working out you can quickly and easily manage your personal health securely:" Grid.Row="2" Margin="5,0,0,0"></TextBlock>
+                            <Grid Grid.Row="1">
+
+                            </Grid>
+                            <TextBlock  FontSize="17" TextWrapping="Wrap" Text="When you make an appointment with one of Advocate Medical Group's 1,200 top doctors, you gain access to MyAdvocate, our patient information portal. And now with our mobile app, whether you're at work or working out you can quickly and easily manage your personal health securely:" Grid.Row="2" VerticalAlignment="Top" Margin="5,0,0,0"></TextBlock>
                             <Grid Grid.Row="3"></Grid>
-                            <Grid Grid.Row="4"  >
+                            <Grid Grid.Row="4" >
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="0.3*"></RowDefinition>
-                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="100"></RowDefinition>
+                                    <RowDefinition Height="100"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0" Margin="8,30,0,0" >
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="0.05*"></ColumnDefinition>
+                                        <ColumnDefinition Width="0.05*"></ColumnDefinition>
+                                        <ColumnDefinition Width="0.08*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Top"  >
 
-                                        <Image Height="40" Source="/Assets/Advocte portal icons-01.png" ></Image>
+                                        <Image Height="50" Source="/Assets/Advocte portal icons-01.png" ></Image>
 
-                                        <TextBlock  Text="View your Medical history"  Width="60" Foreground="#E6673A" VerticalAlignment="Center"  TextWrapping="Wrap" FontSize="11" Margin="5,0,0,0"/>
+                                        <TextBlock  Text="View your Medical history"  Width="60" Foreground="#E6673A" VerticalAlignment="Center"  TextWrapping="Wrap" FontSize="11" Margin="0,0,0,0"/>
 
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Column="1"  VerticalAlignment="Top" >
 
-                                        <Image Height="40" Source="/Assets/Advocte portal icons-02.png" ></Image>
+                                        <Image Height="50" Source="/Assets/Advocte portal icons-02.png" ></Image>
 
-                                        <TextBlock Text="Schedule a health care appointment"  Width="80" Foreground="#E6673A" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="11" Margin="5,0,0,0"/>
+                                        <TextBlock Text="Schedule a health care appointment"  Width="80" Foreground="#E6673A" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="11" Margin="0,0,0,0"/>
 
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Top" >
 
-                                        <Image Height="40" Source="/Assets/Advocte portal icons-05.png" ></Image>
+                                        <Image Height="50" Source="/Assets/Advocte portal icons-05.png" VerticalAlignment="Top" ></Image>
 
-                                        <TextBlock Text="Send a message to your doctors office"  Width="85" Foreground="#E6673A"  TextWrapping="Wrap" VerticalAlignment="Center"  FontSize="11" Margin="5,0,0,0"/>
+                                        <TextBlock Text="Send a message to your doctors office"  Width="85" Foreground="#E6673A"  TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"  FontSize="11" Margin="0,0,0,0"/>
 
                                     </StackPanel>
                                 </Grid>
                                 <Grid Grid.Row="1" Margin="5,30,0,0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="0.05*"></ColumnDefinition>
+                                        <ColumnDefinition Width="0.05*"></ColumnDefinition>
+                                        <ColumnDefinition Width="0.08*"></ColumnDefinition>
 
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Top" >
 
-                                        <Image Height="40" Source="/Assets/Advocte portal icons-03.png" ></Image>
+                                        <Image Height="50" Source="/Assets/Advocte portal icons-03.png" ></Image>
 
-                                        <TextBlock Text="Review your test results" Width="60" Foreground="#E6673A" VerticalAlignment="Center"  TextWrapping="Wrap"  FontSize="11" Margin="5,0,0,0"/>
+                                        <TextBlock Text="Review your test results" Width="60" Foreground="#E6673A" VerticalAlignment="Center"  TextWrapping="Wrap"  FontSize="11" Margin="0,0,0,0"/>
 
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top" >
 
-                                        <Image Height="40" Source="/Assets/Advocte portal icons-04.png" ></Image>
+                                        <Image Height="50" Source="/Assets/Advocte portal icons-04.png" ></Image>
 
-                                        <TextBlock Text="Request a prescription refill" Width="80" Foreground="#E6673A"  TextWrapping="Wrap" VerticalAlignment="Center"  FontSize="11" Margin="5,0,0,0"/>
+                                        <TextBlock Text="Request a prescription refill" Width="80" Foreground="#E6673A"  TextWrapping="Wrap" VerticalAlignment="Center"  FontSize="11" Margin="0,0,0,0"/>
 
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Top">
 
-                                        <Image Height="40" Source="/Assets/Advocte portal icons-06.png" ></Image>
+                                        <Image Height="50" Source="/Assets/Advocte portal icons-06.png" ></Image>
 
-                                        <TextBlock Text="Sync with your favorite health and wellness apps" Width="100"  Foreground="#E6673A" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="11" Margin="5,0,0,0"/>
+                                        <TextBlock Text="Sync with your favorite health and wellness apps" Width="95"  Foreground="#E6673A" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="11" Margin="0,0,0,0"/>
 
 
                                     </StackPanel>
@@ -141,7 +143,7 @@
                             <Grid Grid.Row="5">
 
                             </Grid>
-                            <TextBlock FontSize="17" VerticalAlignment="Top" TextWrapping="Wrap" Text="Advocate Medical Group is making it easier than ever to live your healthiest life and get back to the moments that matter!" Grid.Row="6" Margin="30,0,0,0" HorizontalAlignment="Center"><LineBreak></LineBreak><Hyperlink NavigateUri="https://myadvocate.advocatehealth.com/patientApp/login.do;jsessionid=AACAD06EC50EA964606B73BD7FA071FB"> Go to MyAdvocate</Hyperlink></TextBlock>
+                            <TextBlock FontSize="17" VerticalAlignment="Top" TextWrapping="Wrap" Text="Advocate Medical Group is making it easier than ever to live your healthiest life and get back to the moments that matter!" Grid.Row="6" Margin="5,0,0,0" HorizontalAlignment="Center"><LineBreak></LineBreak><Hyperlink NavigateUri="https://myadvocate.advocatehealth.com/patientApp/login.do;jsessionid=AACAD06EC50EA964606B73BD7FA071FB"> Go to MyAdvocate</Hyperlink></TextBlock>
                         </Grid>
                         <!--WOrking on above-->
                         <Grid Grid.Column="1" x:Name="grdAddNotes" >
@@ -186,7 +188,7 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <Grid Grid.Column="0" Background="White"></Grid>
+                                <Grid Grid.Column="0" ></Grid>
 
 
                                 <Grid Grid.Column="1" Background="#E5673A" x:Name="text" Tapped="Journaltext_Tapped" >
@@ -220,9 +222,9 @@
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0" Background="White">
                                         <StackPanel  >
-                                            <TextBox x:Name="JorQtext" BorderThickness="1" FontSize="12" BorderBrush="#cecece" Visibility="Visible" PlaceholderText="Add your notes here..." VerticalAlignment="Top" Height="400" TextWrapping="Wrap" Margin="0,0,0,0" />
-                                            <TextBox x:Name="JorQtext1" BorderThickness="1" Visibility="Collapsed" FontSize="12" BorderBrush="#cecece" PlaceholderText="Add your questions here..." VerticalAlignment="Top" Height="400" TextWrapping="Wrap" Margin="0,0,0,0" />
-                                            <Button Click="saveJorQnotes" Foreground="#ffffff"  HorizontalAlignment="Right" Margin="0,-50,10,0"  Width="132"  Background="#E5673A">Save</Button>
+                                            <TextBox x:Name="JorQtext" BorderThickness="1" FontSize="12" BorderBrush="#cecece" Visibility="Visible" PlaceholderText="Add your notes here..." VerticalAlignment="Top" Height="375" TextWrapping="Wrap" Margin="0,0,0,0" />
+                                            <TextBox x:Name="JorQtext1" BorderThickness="1" Visibility="Collapsed" FontSize="12" BorderBrush="#cecece" PlaceholderText="Add your questions here..." VerticalAlignment="Top" Height="375" TextWrapping="Wrap" Margin="0,0,0,0" />
+                                            <Button Click="saveJorQnotes" Foreground="#ffffff"  HorizontalAlignment="Right" Margin="0,-65,15,0"  Width="132"  Background="#E5673A">Save</Button>
                                         </StackPanel>
                                     </Grid>
                                     <!--<Grid  Grid.Row="1" Background="Red">
@@ -245,126 +247,31 @@
                     </Grid>
                 </PivotItem>
                 <PivotItem Header="General">
-                    <Grid Background="#EFEFEF">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <GridView Grid.Row="0" x:Name="grdDeliveryDetailsGeneral">
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="240" Width="400" Background="#FFFFFF" Margin="20,20,0,0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
-
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Row="0" Source="{Binding DeliveryUrl}" Stretch="Fill"></Image>
-                                        <TextBlock Grid.Row="1" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20"  Foreground="#DF6C3F"  Text="{Binding DeliveryTitle}" Margin="10,0,0,0"></TextBlock>
-                                        <TextBlock Grid.Row="2" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="17"  Foreground="Black"  Text="{Binding DeliveryInfo}" Margin="10,0,0,0"></TextBlock>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </Grid>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                        <Grid Name="AdvocateGeneraltilegrid"    Margin="0,0,0,0" >
+                        </Grid>
+                    </ScrollViewer>
 
                 </PivotItem>
                 <PivotItem Header="Pre Delivery">
-                    <Grid Background="#EFEFEF">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <GridView Grid.Row="0" x:Name="grdDeliveryDetails1">
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="240" Width="400" Background="#FFFFFF" Margin="20,20,0,0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                        <Grid Name="AdvocatePredeliverytilegrid"    Margin="0,0,0,0" >
+                        </Grid>
+                    </ScrollViewer>
 
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Row="0" Source="{Binding DeliveryUrl}" Stretch="Fill"></Image>
-                                        <TextBlock Grid.Row="1" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20"  Foreground="#DF6C3F"  Text="{Binding DeliveryTitle}" Margin="10,0,0,0"></TextBlock>
-                                        <TextBlock Grid.Row="2" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="17"  Foreground="Black"  Text="{Binding DeliveryInfo}" Margin="10,0,0,0"></TextBlock>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </Grid>
 
                 </PivotItem>
                 <PivotItem Header="Delivery">
-                    <Grid Background="#EFEFEF">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <GridView Grid.Row="0" x:Name="grdDeliveryDetails2">
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="240" Width="400" Background="#FFFFFF" Margin="20,20,0,0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
-
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Row="0" Source="{Binding DeliveryUrl}" Stretch="Fill"></Image>
-                                        <TextBlock Grid.Row="1" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20"  Foreground="#DF6C3F"  Text="{Binding DeliveryTitle}" Margin="10,0,0,0"></TextBlock>
-                                        <TextBlock Grid.Row="2" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="17"  Foreground="Black"  Text="{Binding DeliveryInfo}" Margin="10,0,0,0"></TextBlock>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </Grid>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                        <Grid Name="AdvocateDeliverytilegrid"    Margin="0,0,0,0" >
+                        </Grid>
+                    </ScrollViewer>
                 </PivotItem>
                 <PivotItem Header="Post Delivery">
-                    <Grid Background="#EFEFEF">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <GridView Grid.Row="0" x:Name="grdDeliveryDetails3">
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal"></VariableSizedWrapGrid>
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="240" Width="400" Background="#FFFFFF" Margin="20,20,0,0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
-                                            <RowDefinition Height="0.2*"></RowDefinition>
-
-                                        </Grid.RowDefinitions>
-                                        <Image Grid.Row="0" Source="{Binding DeliveryUrl}" Stretch="Fill"></Image>
-                                        <TextBlock Grid.Row="1" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20"  Foreground="#DF6C3F"  Text="{Binding DeliveryTitle}" Margin="10,0,0,0"></TextBlock>
-                                        <TextBlock Grid.Row="2" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="17"  Foreground="Black"  Text="{Binding DeliveryInfo}" Margin="10,0,0,0"></TextBlock>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </Grid>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                        <Grid Name="AdvocatePostdeliverytilegrid"    Margin="0,0,0,0" >
+                        </Grid>
+                    </ScrollViewer>
                 </PivotItem>
 
             </Pivot.Items>

@@ -8,14 +8,17 @@ using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
 using Windows.UI;
 using Windows.UI.Popups;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -27,13 +30,48 @@ namespace AdvocateHealthCare
     /// </summary>
     public sealed partial class MyAdvocatePage : Page
     {
+        public DisplayOrientations orientation = DisplayOrientations.Landscape;
         public MyAdvocatePage()
         {
             this.InitializeComponent();
             getback.Visibility = Visibility.Collapsed;
             txtNotificationCount.Text = HomePage.unreadNotificationCount.ToString();//Displays the notification count
-        }
+            DisplayProperties.OrientationChanged += Page_OrientationChanged;
+            var bounds = Window.Current.Bounds;
 
+            double height = bounds.Height;
+
+            double width = bounds.Width;
+            if (height < width)
+            {
+                orientation = DisplayOrientations.Landscape;
+            }
+            else
+            {
+                orientation = DisplayOrientations.Portrait;
+            }
+        }
+        public void Page_OrientationChanged(object sender)
+        {
+            //The orientation of the device is ...
+            orientation = DisplayProperties.CurrentOrientation;
+            if (orientation == DisplayOrientations.Landscape || orientation == DisplayOrientations.LandscapeFlipped)
+            {
+                ConstructTileGridforgeneral(lstDeliveryInformation);
+                ConstructTileGridforPredelivery(lstDeliveryInformation);
+                ConstructTileGridforDelivery(lstDeliveryInformation);
+                ConstructTileGridforPostDelivery(lstDeliveryInformation);
+            }
+
+            if (orientation == DisplayOrientations.Portrait || orientation == DisplayOrientations.PortraitFlipped)
+            {
+                ConstructTileGridforgeneral(lstDeliveryInformation);
+                ConstructTileGridforPredelivery(lstDeliveryInformation);
+                ConstructTileGridforDelivery(lstDeliveryInformation);
+                ConstructTileGridforPostDelivery(lstDeliveryInformation);
+            }
+
+        }
         private void Viewbox_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (grdAddNotes.Visibility == Visibility.Visible)
@@ -83,14 +121,16 @@ namespace AdvocateHealthCare
 
         }
         DeliveryInformation objDeliveryInformation = new DeliveryInformation();
+        List<DeliveryInformation> lstDeliveryInformation = new List<DeliveryInformation>();
         //gets the content of selected pivot item by passing id
         public async void DeliveryInfo(string id)
         {
+            lstDeliveryInformation.Clear();
             if (App.IsInternet() == true)
             {
                 try
                 {
-                    List<DeliveryInformation> lstDeliveryInformation = new List<DeliveryInformation>();
+
                     string DeliveryInfoUri = App.BASE_URL + "/api/Tiles/GetTilesById?SUBCATEGORYID=" + id;
                     var client = new HttpClient();
                     HttpResponseMessage response = await client.GetAsync(new Uri(DeliveryInfoUri));
@@ -116,18 +156,18 @@ namespace AdvocateHealthCare
                                 // grdDeliveryDetails.ItemsSource = lstDeliveryInformation;
                                 break;
                             case "General":
-                                grdDeliveryDetailsGeneral.ItemsSource = lstDeliveryInformation;
+                                ConstructTileGridforgeneral(lstDeliveryInformation);
                                 break;
                             case "Pre Delivery":
-                                grdDeliveryDetails1.ItemsSource = lstDeliveryInformation;
+                                ConstructTileGridforPredelivery(lstDeliveryInformation);
                                 break;
 
                             case "Delivery":
-                                grdDeliveryDetails2.ItemsSource = lstDeliveryInformation;
+                                ConstructTileGridforDelivery(lstDeliveryInformation);
                                 break;
 
                             case "Post Delivery":
-                                grdDeliveryDetails3.ItemsSource = lstDeliveryInformation;
+                                ConstructTileGridforPostDelivery(lstDeliveryInformation);
                                 break;
                         }
                     }
@@ -308,6 +348,1080 @@ namespace AdvocateHealthCare
                 GridDiet.ColumnDefinitions.RemoveAt(1);
                 getback.Visibility = Visibility.Visible;
             }
+        }
+        public void ConstructTileGridforgeneral(List<DeliveryInformation> deliveryInfoList)
+        {
+            AdvocateGeneraltilegrid.RowDefinitions.Clear();
+            AdvocateGeneraltilegrid.ColumnDefinitions.Clear();
+            AdvocateGeneraltilegrid.Children.Clear();
+
+            if (orientation == DisplayOrientations.PortraitFlipped || orientation == DisplayOrientations.Portrait)
+            {
+                AddColumnsToTileGeneralGridPortrait();
+
+            }
+            else if (orientation == DisplayOrientations.Landscape || orientation == DisplayOrientations.LandscapeFlipped)
+            {
+                AddColumnsToTileGneralGridLandscape();
+
+            }
+            else
+            {
+                AddColumnsToTileGneralGridLandscape();
+
+            }
+
+            int row = 0;
+            int col = -1;
+            //1st row
+            RowDefinition rd1 = new RowDefinition();
+            GridLength gl1 = new GridLength(2, GridUnitType.Star);
+            rd1.Height = gl1;
+            AdvocateGeneraltilegrid.RowDefinitions.Add(rd1);
+
+
+            for (int i = 0; i < deliveryInfoList.Count; i++)
+            {
+                //ScrollViewer scrollViewer = new ScrollViewer();
+
+                Grid childGrid = null;
+                childGrid = new Grid();
+
+                //event
+                childGrid.Background = new SolidColorBrush(Colors.White);
+                childGrid.BorderThickness = new Thickness(1);
+                childGrid.BorderBrush = new SolidColorBrush(Color.FromArgb(225, 229, 229, 229));
+
+
+                childGrid.Tapped += ChildGridgeneral_Tapped;
+
+                childGrid.Margin = new Thickness(10, 10, 10, 10);
+
+                //row1
+                RowDefinition childGridRow1 = new RowDefinition();
+                GridLength cgl1 = new GridLength(1, GridUnitType.Star);
+                childGridRow1.Height = cgl1;
+                childGrid.RowDefinitions.Add(childGridRow1);
+                //row2
+                RowDefinition childGridRow2 = new RowDefinition();
+                GridLength cgl2 = new GridLength(0.2, GridUnitType.Star);
+                childGridRow2.Height = cgl2;
+
+                childGrid.RowDefinitions.Add(childGridRow2);
+                //row3
+                RowDefinition childGridRow3 = new RowDefinition();
+                GridLength cgl3 = new GridLength(0.2, GridUnitType.Star);
+                childGridRow3.Height = cgl3;
+                childGrid.RowDefinitions.Add(childGridRow3);
+
+                //StackPanel deliveryInfoStackTile = new StackPanel();
+                //deliveryInfoStackTile.Orientation = Orientation.Vertical;
+
+                // < Image  Grid.Row = "0" Source = "{Binding DeliveryUrl}" Stretch = "Fill" ></ Image >
+                Image img = new Image();
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.UriSource = deliveryInfoList[i].DeliveryUrl;
+                img.Source = bitmapImage;
+                img.Stretch = Stretch.Fill;
+
+                Grid.SetRow(img, 0);
+                childGrid.Children.Add(img);
+
+                //  < TextBlock Grid.Row = "1" TextTrimming = "WordEllipsis" FontWeight = "SemiLight" FontSize = "20"   Foreground = "#DF6C3F"  Text = "{Binding DeliveryTitle}" Margin = "10,0,0,0" ></ TextBlock >
+
+                TextBlock tb1 = new TextBlock();
+                tb1.Name = "TileName";
+                if (deliveryInfoList[i].DeliveryInfo == null)
+                {
+
+                }
+                else
+                {
+                    tb1.Text = deliveryInfoList[i].DeliveryTitle;
+                }
+
+                tb1.TextTrimming = TextTrimming.WordEllipsis;
+                tb1.FontSize = 20;
+                tb1.Foreground = new SolidColorBrush(Color.FromArgb(225, 229, 103, 58));
+                tb1.FontWeight = FontWeights.SemiLight;
+                tb1.Margin = new Thickness(10, 0, 0, 0);
+
+                Grid.SetRow(tb1, 1);
+                childGrid.Children.Add(tb1);
+
+                //  < TextBlock Grid.Row = "2" TextTrimming = "WordEllipsis" FontWeight = "SemiLight" FontSize = "17"  Foreground = "Black"  Text = "{Binding DeliveryInfo}"   Margin = "10,0,0,0" ></ TextBlock >
+
+                TextBlock tb2 = new TextBlock();
+                if (deliveryInfoList[i].DeliveryInfo == null)
+                {
+
+                }
+                else
+                {
+                    tb2.Text = deliveryInfoList[i].DeliveryInfo;
+                }
+
+                tb2.TextTrimming = TextTrimming.WordEllipsis;
+                tb2.FontSize = 17;
+                tb2.Foreground = new SolidColorBrush(Colors.Black);
+                tb2.FontWeight = FontWeights.SemiLight;
+                tb2.Margin = new Thickness(10, 10, 0, 15);
+
+                Grid.SetRow(tb2, 2);
+                childGrid.Children.Add(tb2);
+
+
+                if (orientation == DisplayOrientations.Landscape || orientation == DisplayOrientations.LandscapeFlipped)
+                {
+                    if ((i + 1) > 2 * (row + 1))
+                    {
+                        RowDefinition rd = new RowDefinition();
+                        GridLength gl = new GridLength(1, GridUnitType.Star);
+                        rd.Height = gl;
+                        AdvocateGeneraltilegrid.RowDefinitions.Add(rd);
+
+                        row = row + 1;
+                        col = 0;
+                    }
+                    else
+                    {
+                        col = col + 1;
+                    }
+                }
+                else if (orientation == DisplayOrientations.Portrait || orientation == DisplayOrientations.PortraitFlipped)
+                {
+                    if ((i + 1) > 1 * (row + 1))
+                    {
+                        RowDefinition rd = new RowDefinition();
+                        GridLength gl = new GridLength(1, GridUnitType.Star);
+                        rd.Height = gl;
+                        AdvocateGeneraltilegrid.RowDefinitions.Add(rd);
+
+                        row = row + 1;
+                        col = 0;
+                    }
+                    else
+                    {
+                        col = col + 1;
+                    }
+                }
+                else
+                {
+                    if ((i + 1) > 2 * (row + 1))
+                    {
+                        RowDefinition rd = new RowDefinition();
+                        GridLength gl = new GridLength(1, GridUnitType.Star);
+                        rd.Height = gl;
+                        AdvocateGeneraltilegrid.RowDefinitions.Add(rd);
+
+                        row = row + 1;
+                        col = 0;
+                    }
+                    else
+                    {
+                        col = col + 1;
+                    }
+                }
+
+                //Add to Grid
+                Grid.SetRow(childGrid, row);
+                Grid.SetColumn(childGrid, col);
+                AdvocateGeneraltilegrid.Children.Add(childGrid);
+
+            }
+
+        }
+        public void AddColumnsToTileGeneralGridPortrait()
+        {
+            //1st column
+            ColumnDefinition cd1 = new ColumnDefinition();
+            GridLength gl1 = new GridLength(1, GridUnitType.Star);
+            cd1.Width = gl1;
+            AdvocateGeneraltilegrid.ColumnDefinitions.Add(cd1);
+        }
+
+        public void AddColumnsToTileGneralGridLandscape()
+        {
+
+            //1st column
+            ColumnDefinition cd1 = new ColumnDefinition();
+            GridLength gl1 = new GridLength(1, GridUnitType.Star);
+            cd1.Width = gl1;
+            AdvocateGeneraltilegrid.ColumnDefinitions.Add(cd1);
+
+            //2st column
+            ColumnDefinition cd2 = new ColumnDefinition();
+            GridLength gl2 = new GridLength(1, GridUnitType.Star);
+            cd2.Width = gl2;
+            AdvocateGeneraltilegrid.ColumnDefinitions.Add(cd2);
+        }
+        private void ChildGridgeneral_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+
+            foreach (Grid cg in AdvocateGeneraltilegrid.Children)
+            {
+                cg.BorderBrush = new SolidColorBrush(Color.FromArgb(225, 229, 229, 229));
+            }
+
+           ((Windows.UI.Xaml.Controls.Grid)sender).BorderBrush = new SolidColorBrush(Color.FromArgb(225, 229, 103, 58));
+            DisplayOrientations x = orientation;
+            var childrens = ((Windows.UI.Xaml.Controls.Panel)sender).Children;
+
+            var textblocks = childrens.OfType<TextBlock>();
+
+
+            foreach (TextBlock t in textblocks)
+            {
+                if (t.Name == "TileName")
+                {
+                    if (t.Text == "My Advocate Portal")
+                    {
+
+                        this.Frame.Navigate(typeof(MyAdvocatePage));
+
+                    }
+                }
+            }
+        }
+        private async void ChildGridpredelivery_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+
+            foreach (Grid cg in AdvocatePredeliverytilegrid.Children)
+            {
+                cg.BorderBrush = new SolidColorBrush(Color.FromArgb(225, 229, 229, 229));
+            }
+
+        ((Windows.UI.Xaml.Controls.Grid)sender).BorderBrush = new SolidColorBrush(Color.FromArgb(225, 229, 103, 58));
+
+            var childrens = ((Windows.UI.Xaml.Controls.Panel)sender).Children;
+
+            var textblocks = childrens.OfType<TextBlock>();
+
+
+            foreach (TextBlock t in textblocks)
+            {
+                if (t.Name == "TileName")
+                {
+                    if (t.Text == "Diet and Pregnancy")
+                    {
+
+                        this.Frame.Navigate(typeof(DietandPregnancy));
+
+                    }
+                }
+            }
+        }
+        public void ConstructTileGridforPredelivery(List<DeliveryInformation> deliveryInfoList)
+        {
+            AdvocatePredeliverytilegrid.RowDefinitions.Clear();
+            AdvocatePredeliverytilegrid.ColumnDefinitions.Clear();
+            AdvocatePredeliverytilegrid.Children.Clear();
+
+            if (orientation == DisplayOrientations.PortraitFlipped || orientation == DisplayOrientations.Portrait)
+            {
+                AddColumnsToTilePredeliveryGridPortrait();
+
+            }
+            else if (orientation == DisplayOrientations.Landscape || orientation == DisplayOrientations.LandscapeFlipped)
+            {
+                AddColumnsToTilePredeliveryGridLandscape();
+
+            }
+            else
+            {
+                AddColumnsToTilePredeliveryGridLandscape();
+
+            }
+
+            int row = 0;
+            int col = -1;
+            //1st row
+            RowDefinition rd1 = new RowDefinition();
+            GridLength gl1 = new GridLength(2, GridUnitType.Star);
+            rd1.Height = gl1;
+            AdvocatePredeliverytilegrid.RowDefinitions.Add(rd1);
+
+
+            for (int i = 0; i < deliveryInfoList.Count; i++)
+            {
+                //ScrollViewer scrollViewer = new ScrollViewer();
+
+                Grid childGrid = null;
+                childGrid = new Grid();
+
+                //event
+                childGrid.Background = new SolidColorBrush(Colors.White);
+                childGrid.BorderThickness = new Thickness(1);
+                childGrid.BorderBrush = new SolidColorBrush(Color.FromArgb(225, 229, 229, 229));
+
+
+                childGrid.Tapped += ChildGridpredelivery_Tapped;
+
+                childGrid.Margin = new Thickness(10, 10, 10, 10);
+
+                //row1
+                RowDefinition childGridRow1 = new RowDefinition();
+                GridLength cgl1 = new GridLength(1, GridUnitType.Star);
+                childGridRow1.Height = cgl1;
+                childGrid.RowDefinitions.Add(childGridRow1);
+                //row2
+                RowDefinition childGridRow2 = new RowDefinition();
+                GridLength cgl2 = new GridLength(0.2, GridUnitType.Star);
+                childGridRow2.Height = cgl2;
+
+                childGrid.RowDefinitions.Add(childGridRow2);
+                //row3
+                RowDefinition childGridRow3 = new RowDefinition();
+                GridLength cgl3 = new GridLength(0.2, GridUnitType.Star);
+                childGridRow3.Height = cgl3;
+                childGrid.RowDefinitions.Add(childGridRow3);
+
+                //StackPanel deliveryInfoStackTile = new StackPanel();
+                //deliveryInfoStackTile.Orientation = Orientation.Vertical;
+
+                // < Image  Grid.Row = "0" Source = "{Binding DeliveryUrl}" Stretch = "Fill" ></ Image >
+                Image img = new Image();
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.UriSource = deliveryInfoList[i].DeliveryUrl;
+                img.Source = bitmapImage;
+                img.Stretch = Stretch.Fill;
+
+                Grid.SetRow(img, 0);
+                childGrid.Children.Add(img);
+
+                //  < TextBlock Grid.Row = "1" TextTrimming = "WordEllipsis" FontWeight = "SemiLight" FontSize = "20"   Foreground = "#DF6C3F"  Text = "{Binding DeliveryTitle}" Margin = "10,0,0,0" ></ TextBlock >
+
+                TextBlock tb1 = new TextBlock();
+                tb1.Name = "TileName";
+                if (deliveryInfoList[i].DeliveryInfo == null)
+                {
+
+                }
+                else
+                {
+                    tb1.Text = deliveryInfoList[i].DeliveryTitle;
+                }
+
+                tb1.TextTrimming = TextTrimming.WordEllipsis;
+                tb1.FontSize = 20;
+                tb1.Foreground = new SolidColorBrush(Color.FromArgb(225, 229, 103, 58));
+                tb1.FontWeight = FontWeights.SemiLight;
+                tb1.Margin = new Thickness(10, 0, 0, 0);
+
+                Grid.SetRow(tb1, 1);
+                childGrid.Children.Add(tb1);
+
+                //  < TextBlock Grid.Row = "2" TextTrimming = "WordEllipsis" FontWeight = "SemiLight" FontSize = "17"  Foreground = "Black"  Text = "{Binding DeliveryInfo}"   Margin = "10,0,0,0" ></ TextBlock >
+
+                TextBlock tb2 = new TextBlock();
+                if (deliveryInfoList[i].DeliveryInfo == null)
+                {
+
+                }
+                else
+                {
+                    tb2.Text = deliveryInfoList[i].DeliveryInfo;
+                }
+
+                tb2.TextTrimming = TextTrimming.WordEllipsis;
+                tb2.FontSize = 17;
+                tb2.Foreground = new SolidColorBrush(Colors.Black);
+                tb2.FontWeight = FontWeights.SemiLight;
+                tb2.Margin = new Thickness(10, 10, 0, 15);
+
+                Grid.SetRow(tb2, 2);
+                childGrid.Children.Add(tb2);
+
+
+                if (orientation == DisplayOrientations.Landscape || orientation == DisplayOrientations.LandscapeFlipped)
+                {
+                    if ((i + 1) > 2 * (row + 1))
+                    {
+                        RowDefinition rd = new RowDefinition();
+                        GridLength gl = new GridLength(1, GridUnitType.Star);
+                        rd.Height = gl;
+                        AdvocatePredeliverytilegrid.RowDefinitions.Add(rd);
+
+                        row = row + 1;
+                        col = 0;
+                    }
+                    else
+                    {
+                        col = col + 1;
+                    }
+                }
+                else if (orientation == DisplayOrientations.Portrait || orientation == DisplayOrientations.PortraitFlipped)
+                {
+                    if ((i + 1) > 1 * (row + 1))
+                    {
+                        RowDefinition rd = new RowDefinition();
+                        GridLength gl = new GridLength(1, GridUnitType.Star);
+                        rd.Height = gl;
+                        AdvocatePredeliverytilegrid.RowDefinitions.Add(rd);
+
+                        row = row + 1;
+                        col = 0;
+                    }
+                    else
+                    {
+                        col = col + 1;
+                    }
+                }
+                else
+                {
+                    if ((i + 1) > 2 * (row + 1))
+                    {
+                        RowDefinition rd = new RowDefinition();
+                        GridLength gl = new GridLength(1, GridUnitType.Star);
+                        rd.Height = gl;
+                        AdvocatePredeliverytilegrid.RowDefinitions.Add(rd);
+
+                        row = row + 1;
+                        col = 0;
+                    }
+                    else
+                    {
+                        col = col + 1;
+                    }
+                }
+
+                //Add to Grid
+                Grid.SetRow(childGrid, row);
+                Grid.SetColumn(childGrid, col);
+                AdvocatePredeliverytilegrid.Children.Add(childGrid);
+
+            }
+
+        }
+
+        public void AddColumnsToTilePredeliveryGridLandscape()
+        {
+            //1st column
+            ColumnDefinition cd1 = new ColumnDefinition();
+            GridLength gl1 = new GridLength(1, GridUnitType.Star);
+            cd1.Width = gl1;
+            AdvocatePredeliverytilegrid.ColumnDefinitions.Add(cd1);
+
+            //2st column
+            ColumnDefinition cd2 = new ColumnDefinition();
+            GridLength gl2 = new GridLength(1, GridUnitType.Star);
+            cd2.Width = gl2;
+            AdvocatePredeliverytilegrid.ColumnDefinitions.Add(cd2);
+
+        }
+        public void AddColumnsToTilePredeliveryGridPortrait()
+        {
+
+            //1st column
+            ColumnDefinition cd1 = new ColumnDefinition();
+            GridLength gl1 = new GridLength(1, GridUnitType.Star);
+            cd1.Width = gl1;
+            AdvocatePredeliverytilegrid.ColumnDefinitions.Add(cd1);
+        }
+
+        public void ConstructTileGridforDelivery(List<DeliveryInformation> deliveryInfoList)
+        {
+            AdvocateDeliverytilegrid.RowDefinitions.Clear();
+            AdvocateDeliverytilegrid.ColumnDefinitions.Clear();
+            AdvocateDeliverytilegrid.Children.Clear();
+
+            if (orientation == DisplayOrientations.PortraitFlipped || orientation == DisplayOrientations.Portrait)
+            {
+                AddColumnsToTileDeliveryGridPortrait();
+
+            }
+            else if (orientation == DisplayOrientations.Landscape || orientation == DisplayOrientations.LandscapeFlipped)
+            {
+                AddColumnsToTileDeliveryGridLandscape();
+
+            }
+            else
+            {
+                AddColumnsToTileDeliveryGridLandscape();
+            }
+
+            int row = 0;
+            int col = -1;
+            if (lstDeliveryInformation.Count < 3)
+            {
+                RowDefinition rd1 = new RowDefinition();
+                GridLength gl1 = new GridLength(330);
+                rd1.Height = gl1;
+                AdvocateDeliverytilegrid.RowDefinitions.Add(rd1);
+            }
+            else
+            {
+                RowDefinition rd1 = new RowDefinition();
+                GridLength gl1 = new GridLength(1, GridUnitType.Star);
+                rd1.Height = gl1;
+                AdvocateDeliverytilegrid.RowDefinitions.Add(rd1);
+            }
+
+
+
+            for (int i = 0; i < deliveryInfoList.Count; i++)
+            {
+                //ScrollViewer scrollViewer = new ScrollViewer();
+
+                Grid childGrid = null;
+                childGrid = new Grid();
+
+                //event
+                childGrid.Background = new SolidColorBrush(Colors.White);
+                childGrid.BorderThickness = new Thickness(1);
+                childGrid.BorderBrush = new SolidColorBrush(Color.FromArgb(225, 229, 229, 229));
+
+
+                childGrid.Tapped += ChildGriddelivery_Tapped;
+
+                childGrid.Margin = new Thickness(10, 10, 10, 10);
+
+                //row1
+                RowDefinition childGridRow1 = new RowDefinition();
+                GridLength cgl1 = new GridLength(1, GridUnitType.Star);
+                childGridRow1.Height = cgl1;
+                childGrid.RowDefinitions.Add(childGridRow1);
+                //row2
+                RowDefinition childGridRow2 = new RowDefinition();
+                GridLength cgl2 = new GridLength(0.2, GridUnitType.Star);
+                childGridRow2.Height = cgl2;
+
+                childGrid.RowDefinitions.Add(childGridRow2);
+                //row3
+                RowDefinition childGridRow3 = new RowDefinition();
+                GridLength cgl3 = new GridLength(0.2, GridUnitType.Star);
+                childGridRow3.Height = cgl3;
+                childGrid.RowDefinitions.Add(childGridRow3);
+
+                //StackPanel deliveryInfoStackTile = new StackPanel();
+                //deliveryInfoStackTile.Orientation = Orientation.Vertical;
+
+                // < Image  Grid.Row = "0" Source = "{Binding DeliveryUrl}" Stretch = "Fill" ></ Image >
+                Image img = new Image();
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.UriSource = deliveryInfoList[i].DeliveryUrl;
+                img.Source = bitmapImage;
+                img.Stretch = Stretch.Fill;
+
+                Grid.SetRow(img, 0);
+                childGrid.Children.Add(img);
+
+                //  < TextBlock Grid.Row = "1" TextTrimming = "WordEllipsis" FontWeight = "SemiLight" FontSize = "20"   Foreground = "#DF6C3F"  Text = "{Binding DeliveryTitle}" Margin = "10,0,0,0" ></ TextBlock >
+
+                TextBlock tb1 = new TextBlock();
+                tb1.Name = "TileName";
+                if (deliveryInfoList[i].DeliveryInfo == null)
+                {
+
+                }
+                else
+                {
+                    tb1.Text = deliveryInfoList[i].DeliveryTitle;
+                }
+
+                tb1.TextTrimming = TextTrimming.WordEllipsis;
+                tb1.FontSize = 20;
+                tb1.Foreground = new SolidColorBrush(Color.FromArgb(225, 229, 103, 58));
+                tb1.FontWeight = FontWeights.SemiLight;
+                tb1.Margin = new Thickness(10, 0, 0, 0);
+
+                Grid.SetRow(tb1, 1);
+                childGrid.Children.Add(tb1);
+
+                //  < TextBlock Grid.Row = "2" TextTrimming = "WordEllipsis" FontWeight = "SemiLight" FontSize = "17"  Foreground = "Black"  Text = "{Binding DeliveryInfo}"   Margin = "10,0,0,0" ></ TextBlock >
+
+                TextBlock tb2 = new TextBlock();
+                if (deliveryInfoList[i].DeliveryInfo == null)
+                {
+
+                }
+                else
+                {
+                    tb2.Text = deliveryInfoList[i].DeliveryInfo;
+                }
+
+                tb2.TextTrimming = TextTrimming.WordEllipsis;
+                tb2.FontSize = 17;
+                tb2.Foreground = new SolidColorBrush(Colors.Black);
+                tb2.FontWeight = FontWeights.SemiLight;
+                tb2.Margin = new Thickness(10, 0, 0, 0);
+
+                Grid.SetRow(tb2, 2);
+                childGrid.Children.Add(tb2);
+
+
+                if (orientation == DisplayOrientations.Landscape || orientation == DisplayOrientations.LandscapeFlipped)
+                {
+                    if ((i + 1) > 2 * (row + 1))
+                    {
+                        if (deliveryInfoList.Count < 3)
+                        {
+
+                            RowDefinition rd = new RowDefinition();
+                            GridLength gl = new GridLength(330, GridUnitType.Star);
+                            rd.Height = gl;
+                            AdvocateDeliverytilegrid.RowDefinitions.Add(rd);
+
+                            row = row + 1;
+                            col = 0;
+                        }
+                        else
+                        {
+                            RowDefinition rd = new RowDefinition();
+                            GridLength gl = new GridLength(1, GridUnitType.Star);
+                            rd.Height = gl;
+                            AdvocateDeliverytilegrid.RowDefinitions.Add(rd);
+
+                            row = row + 1;
+                            col = 0;
+
+                        }
+                    }
+
+                    else
+                    {
+                        col = col + 1;
+                    }
+                }
+
+                else if (orientation == DisplayOrientations.Portrait || orientation == DisplayOrientations.PortraitFlipped)
+                {
+                    if ((i + 1) > 1 * (row + 1))
+                    {
+                        if (deliveryInfoList.Count < 3)
+                        {
+                            RowDefinition rd = new RowDefinition();
+                            GridLength gl = new GridLength(330);
+                            rd.Height = gl;
+                            AdvocateDeliverytilegrid.RowDefinitions.Add(rd);
+
+                            row = row + 1;
+                            col = 0;
+                        }
+                        else
+                        {
+                            RowDefinition rd = new RowDefinition();
+                            GridLength gl = new GridLength(1, GridUnitType.Star);
+                            rd.Height = gl;
+                            AdvocateDeliverytilegrid.RowDefinitions.Add(rd);
+
+                            row = row + 1;
+                            col = 0;
+                        }
+                    }
+                    else
+                    {
+                        col = col + 1;
+                    }
+                }
+                else
+                {
+                    if ((i + 1) > 2 * (row + 1))
+                    {
+                        RowDefinition rd = new RowDefinition();
+                        GridLength gl = new GridLength(1, GridUnitType.Star);
+                        rd.Height = gl;
+                        AdvocateDeliverytilegrid.RowDefinitions.Add(rd);
+
+                        row = row + 1;
+                        col = 0;
+                    }
+                    else
+                    {
+                        col = col + 1;
+                    }
+                }
+
+
+                //Add to Grid
+                Grid.SetRow(childGrid, row);
+                Grid.SetColumn(childGrid, col);
+                AdvocateDeliverytilegrid.Children.Add(childGrid);
+
+            }
+
+        }
+        private async void ChildGriddelivery_Tapped
+(object sender, TappedRoutedEventArgs e)
+        {
+
+
+            foreach (Grid cg in AdvocateDeliverytilegrid.Children)
+            {
+                cg.BorderBrush = new SolidColorBrush(Color.FromArgb(225, 229, 229, 229));
+            }
+
+  ((Windows.UI.Xaml.Controls.Grid)sender).BorderBrush = new SolidColorBrush(Color.FromArgb(225, 229, 103, 58));
+
+            var childrens = ((Windows.UI.Xaml.Controls.Panel)sender).Children;
+
+            var textblocks = childrens.OfType<TextBlock>();
+
+
+            foreach (TextBlock t in textblocks)
+            {
+                if (t.Name == "TileName")
+                {
+                    if (t.Text == "Diet and Pregnancy")
+                    {
+
+                        this.Frame.Navigate(typeof(DietandPregnancy));
+
+                    }
+                }
+            }
+        }
+
+        public void AddColumnsToTileDeliveryGridLandscape()
+        {
+            //1st column
+            ColumnDefinition cd1 = new ColumnDefinition();
+            GridLength gl1 = new GridLength(1, GridUnitType.Star);
+            cd1.Width = gl1;
+            AdvocateDeliverytilegrid.ColumnDefinitions.Add(cd1);
+
+            //2st column
+            ColumnDefinition cd2 = new ColumnDefinition();
+            GridLength gl2 = new GridLength(1, GridUnitType.Star);
+            cd2.Width = gl2;
+            AdvocateDeliverytilegrid.ColumnDefinitions.Add(cd2);
+
+        }
+        public void AddColumnsToTileDeliveryGridPortrait()
+        {
+
+            //1st column
+            ColumnDefinition cd1 = new ColumnDefinition();
+            GridLength gl1 = new GridLength(1, GridUnitType.Star);
+            cd1.Width = gl1;
+            AdvocateDeliverytilegrid.ColumnDefinitions.Add(cd1);
+        }
+
+        public void ConstructTileGridforPostDelivery(List<DeliveryInformation> deliveryInfoList)
+        {
+            AdvocatePostdeliverytilegrid.RowDefinitions.Clear();
+            AdvocatePostdeliverytilegrid.ColumnDefinitions.Clear();
+            AdvocatePostdeliverytilegrid.Children.Clear();
+
+            if (orientation == DisplayOrientations.PortraitFlipped || orientation == DisplayOrientations.Portrait)
+            {
+                AddColumnsToTilePreDeliveryGridPortrait();
+
+            }
+            else if (orientation == DisplayOrientations.Landscape || orientation == DisplayOrientations.LandscapeFlipped)
+            {
+                AddColumnsToTilePreDeliveryGridLandscape();
+
+            }
+            else
+            {
+                AddColumnsToTilePreDeliveryGridLandscape();
+            }
+
+            int row = 0;
+            int col = -1;
+            if (lstDeliveryInformation.Count < 3)
+            {
+                RowDefinition rd5 = new RowDefinition();
+                GridLength gl7 = new GridLength(330);
+                rd5.Height = gl7;
+                AdvocatePostdeliverytilegrid.RowDefinitions.Add(rd5);
+            }
+            else {
+                //1st row
+                RowDefinition rd1 = new RowDefinition();
+                GridLength gl1 = new GridLength(2, GridUnitType.Star);
+                rd1.Height = gl1;
+                AdvocatePostdeliverytilegrid.RowDefinitions.Add(rd1);
+
+            }
+            for (int i = 0; i < deliveryInfoList.Count; i++)
+            {
+                //ScrollViewer scrollViewer = new ScrollViewer();
+
+                Grid childGrid = null;
+                childGrid = new Grid();
+
+                //event
+                childGrid.Background = new SolidColorBrush(Colors.White);
+                childGrid.BorderThickness = new Thickness(1);
+                childGrid.BorderBrush = new SolidColorBrush(Color.FromArgb(225, 229, 229, 229));
+
+
+                childGrid.Tapped += ChildGridpostdelivery_Tapped;
+
+                childGrid.Margin = new Thickness(10, 10, 10, 10);
+
+                //row1
+                RowDefinition childGridRow1 = new RowDefinition();
+                GridLength cgl1 = new GridLength(1, GridUnitType.Star);
+                childGridRow1.Height = cgl1;
+                childGrid.RowDefinitions.Add(childGridRow1);
+                //row2
+                RowDefinition childGridRow2 = new RowDefinition();
+                GridLength cgl2 = new GridLength(0.2, GridUnitType.Star);
+                childGridRow2.Height = cgl2;
+
+                childGrid.RowDefinitions.Add(childGridRow2);
+                //row3
+                RowDefinition childGridRow3 = new RowDefinition();
+                GridLength cgl3 = new GridLength(0.2, GridUnitType.Star);
+                childGridRow3.Height = cgl3;
+                childGrid.RowDefinitions.Add(childGridRow3);
+
+                //StackPanel deliveryInfoStackTile = new StackPanel();
+                //deliveryInfoStackTile.Orientation = Orientation.Vertical;
+
+                // < Image  Grid.Row = "0" Source = "{Binding DeliveryUrl}" Stretch = "Fill" ></ Image >
+                Image img = new Image();
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.UriSource = deliveryInfoList[i].DeliveryUrl;
+                img.Source = bitmapImage;
+                img.Stretch = Stretch.Fill;
+
+                Grid.SetRow(img, 0);
+                childGrid.Children.Add(img);
+
+                //  < TextBlock Grid.Row = "1" TextTrimming = "WordEllipsis" FontWeight = "SemiLight" FontSize = "20"   Foreground = "#DF6C3F"  Text = "{Binding DeliveryTitle}" Margin = "10,0,0,0" ></ TextBlock >
+
+                TextBlock tb1 = new TextBlock();
+                tb1.Name = "TileName";
+                if (deliveryInfoList[i].DeliveryInfo == null)
+                {
+
+                }
+                else
+                {
+                    tb1.Text = deliveryInfoList[i].DeliveryTitle;
+                }
+
+                tb1.TextTrimming = TextTrimming.WordEllipsis;
+                tb1.FontSize = 20;
+                tb1.Foreground = new SolidColorBrush(Color.FromArgb(225, 229, 103, 58));
+                tb1.FontWeight = FontWeights.SemiLight;
+                tb1.Margin = new Thickness(10, 0, 0, 0);
+
+                Grid.SetRow(tb1, 1);
+                childGrid.Children.Add(tb1);
+
+                //  < TextBlock Grid.Row = "2" TextTrimming = "WordEllipsis" FontWeight = "SemiLight" FontSize = "17"  Foreground = "Black"  Text = "{Binding DeliveryInfo}"   Margin = "10,0,0,0" ></ TextBlock >
+
+                TextBlock tb2 = new TextBlock();
+                if (deliveryInfoList[i].DeliveryInfo == null)
+                {
+
+                }
+                else
+                {
+                    tb2.Text = deliveryInfoList[i].DeliveryInfo;
+                }
+
+                tb2.TextTrimming = TextTrimming.WordEllipsis;
+                tb2.FontSize = 17;
+                tb2.Foreground = new SolidColorBrush(Colors.Black);
+                tb2.FontWeight = FontWeights.SemiLight;
+                tb2.Margin = new Thickness(10, 10, 0, 15);
+
+                Grid.SetRow(tb2, 2);
+                childGrid.Children.Add(tb2);
+                if (orientation == DisplayOrientations.Landscape || orientation == DisplayOrientations.LandscapeFlipped)
+                {
+                    if ((i + 1) > 2 * (row + 1))
+                    {
+                        if (lstDeliveryInformation.Count < 3)
+                        {
+
+                            RowDefinition rd = new RowDefinition();
+                            GridLength gl = new GridLength(330);
+                            rd.Height = gl;
+                            AdvocatePostdeliverytilegrid.RowDefinitions.Add(rd);
+
+                            row = row + 1;
+                            col = 0;
+                        }
+                        else
+                        {
+                            RowDefinition rd = new RowDefinition();
+                            GridLength gl = new GridLength(1, GridUnitType.Star);
+                            rd.Height = gl;
+                            AdvocatePostdeliverytilegrid.RowDefinitions.Add(rd);
+
+                            row = row + 1;
+                            col = 0;
+
+                        }
+                    }
+
+                    else
+                    {
+                        col = col + 1;
+                    }
+                }
+
+                else if (orientation == DisplayOrientations.Portrait || orientation == DisplayOrientations.PortraitFlipped)
+                {
+                    if ((i + 1) > 1 * (row + 1))
+                    {
+                        if (lstDeliveryInformation.Count < 3)
+                        {
+                            RowDefinition rd = new RowDefinition();
+                            GridLength gl = new GridLength(330);
+                            rd.Height = gl;
+                            AdvocatePostdeliverytilegrid.RowDefinitions.Add(rd);
+
+                            row = row + 1;
+                            col = 0;
+                        }
+                        else
+                        {
+                            RowDefinition rd = new RowDefinition();
+                            GridLength gl = new GridLength(1, GridUnitType.Star);
+                            rd.Height = gl;
+                            AdvocatePostdeliverytilegrid.RowDefinitions.Add(rd);
+
+                            row = row + 1;
+                            col = 0;
+                        }
+                    }
+                    else
+                    {
+                        col = col + 1;
+                    }
+                }
+                else
+                {
+                    if ((i + 1) > 2 * (row + 1))
+                    {
+                        RowDefinition rd = new RowDefinition();
+                        GridLength gl = new GridLength(1, GridUnitType.Star);
+                        rd.Height = gl;
+                        AdvocatePostdeliverytilegrid.RowDefinitions.Add(rd);
+
+                        row = row + 1;
+                        col = 0;
+                    }
+                    else
+                    {
+                        col = col + 1;
+                    }
+                }
+
+                //if (orientation == DisplayOrientations.Landscape || orientation == DisplayOrientations.LandscapeFlipped)
+                //{
+                //    if ((i + 1) > 2 * (row + 1))
+                //    {
+                //        RowDefinition rd = new RowDefinition();
+                //        GridLength gl = new GridLength(1, GridUnitType.Star);
+                //        rd.Height = gl;
+                //        AdvocatePostdeliverytilegrid.RowDefinitions.Add(rd);
+
+                //        row = row + 1;
+                //        col = 0;
+                //    }
+                //    else
+                //    {
+                //        col = col + 1;
+                //    }
+                //}
+                //else if (orientation == DisplayOrientations.Portrait || orientation == DisplayOrientations.PortraitFlipped)
+                //{
+                //    if ((i + 1) > 1 * (row + 1))
+                //    {
+                //        RowDefinition rd = new RowDefinition();
+                //        GridLength gl = new GridLength(1, GridUnitType.Star);
+                //        rd.Height = gl;
+                //        AdvocatePostdeliverytilegrid.RowDefinitions.Add(rd);
+
+                //        row = row + 1;
+                //        col = 0;
+                //    }
+                //    else
+                //    {
+                //        col = col + 1;
+                //    }
+                //}
+                //else
+                //{
+                //    if ((i + 1) > 2 * (row + 1))
+                //    {
+                //        RowDefinition rd = new RowDefinition();
+                //        GridLength gl = new GridLength(1, GridUnitType.Star);
+                //        rd.Height = gl;
+                //        AdvocatePostdeliverytilegrid.RowDefinitions.Add(rd);
+
+                //        row = row + 1;
+                //        col = 0;
+                //    }
+                //    else
+                //    {
+                //        col = col + 1;
+                //    }
+                //}
+
+                //Add to Grid
+                Grid.SetRow(childGrid, row);
+                Grid.SetColumn(childGrid, col);
+                AdvocatePostdeliverytilegrid.Children.Add(childGrid);
+
+            }
+
+        }
+        private async void ChildGridpostdelivery_Tapped
+(object sender, TappedRoutedEventArgs e)
+        {
+
+
+            foreach (Grid cg in AdvocatePostdeliverytilegrid.Children)
+            {
+                cg.BorderBrush = new SolidColorBrush(Color.FromArgb(225, 229, 229, 229));
+            }
+
+   ((Windows.UI.Xaml.Controls.Grid)sender).BorderBrush = new SolidColorBrush(Color.FromArgb(225, 229, 103, 58));
+
+            var childrens = ((Windows.UI.Xaml.Controls.Panel)sender).Children;
+
+            var textblocks = childrens.OfType<TextBlock>();
+
+
+            foreach (TextBlock t in textblocks)
+            {
+                if (t.Name == "TileName")
+                {
+                    if (t.Text == "Diet and Pregnancy")
+                    {
+
+                        this.Frame.Navigate(typeof(DietandPregnancy));
+
+                    }
+                }
+            }
+        }
+
+        public void AddColumnsToTilePreDeliveryGridLandscape()
+        {
+            //1st column
+            ColumnDefinition cd1 = new ColumnDefinition();
+            GridLength gl1 = new GridLength(1, GridUnitType.Star);
+            cd1.Width = gl1;
+            AdvocatePostdeliverytilegrid.ColumnDefinitions.Add(cd1);
+
+            //2st column
+            ColumnDefinition cd2 = new ColumnDefinition();
+            GridLength gl2 = new GridLength(1, GridUnitType.Star);
+            cd2.Width = gl2;
+            AdvocatePostdeliverytilegrid.ColumnDefinitions.Add(cd2);
+
+        }
+        public void AddColumnsToTilePreDeliveryGridPortrait()
+        {
+
+            //1st column
+            ColumnDefinition cd1 = new ColumnDefinition();
+            GridLength gl1 = new GridLength(1, GridUnitType.Star);
+            cd1.Width = gl1;
+            AdvocatePostdeliverytilegrid.ColumnDefinitions.Add(cd1);
         }
 
     }

@@ -28,7 +28,7 @@
 
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                    <Canvas  Margin="0,0,30,0"  Tapped="Notificationgridtapped" >
+                    <Canvas  Margin="0,0,40,0"  Tapped="Notificationgridtapped" >
                         <Image  x:Name="notificationsImg" Source="/Assets/notifications.png" />
                         <Ellipse Canvas.Left="10" Fill="#E5302B" x:Name="ec"  Width="18" Height="18" />
                         <TextBlock Canvas.Left="15" Canvas.Top="0" Margin="0,0,0,0" FontSize="12" x:Name="txtNotificationCount" Foreground="#ffffff"></TextBlock>
@@ -51,8 +51,8 @@
                     <Grid Background="White">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.1*"></RowDefinition>
-                            <RowDefinition Height="0.1*"></RowDefinition>
-                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="0.15*"></RowDefinition>
+                            <RowDefinition Height="0.2*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0"></Grid>
@@ -64,7 +64,7 @@
                             <Grid Grid.Column="0" Margin="26,0,0,0">
                                 <StackPanel Orientation="Horizontal" >
                                     <TextBlock x:Name="textprofilejournalid" Visibility="Collapsed"></TextBlock>
-                                    <Image Source="Assets/calendar.png" Height="40" Width="50" ></Image>
+                                    <Image Source="Assets/calendar.png" Height="30" Width="30" ></Image>
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="txtdate" Margin="5,0,0,0" ></TextBlock>
                                     <TextBox BorderThickness="0" BorderBrush="White" Visibility="Collapsed" x:Name="ProfileJournalID" ></TextBox>
                                 </StackPanel>
@@ -75,18 +75,18 @@
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="2" VerticalAlignment="Top">
-                            <Grid.ColumnDefinitions>
+                            <!--<Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="54*"/>
                                 <ColumnDefinition Width="53*"/>
                                 <ColumnDefinition Width="509*"/>
-                            </Grid.ColumnDefinitions>
+                            </Grid.ColumnDefinitions>-->
 
-                            <TextBox  Margin="30,15,0,0" Padding="2" BorderBrush="#E6D6B9" Height="20" BorderThickness="0,0,0,1" FontSize="18" x:Name="txtvalue"  PlaceholderText="Entry Title...." Grid.ColumnSpan="3">
+                            <TextBox Style="{StaticResource textplaceholderforground}" Margin="30,15,0,0" Padding="2"  BorderBrush="#E6D6B9" Height="20" BorderThickness="0,0,0,1" FontSize="18" x:Name="txtvalue"   PlaceholderText="Entry Title...." >
                             </TextBox>
 
                         </Grid>
-                        <Grid Grid.Row="3" Margin="26,30,0,0" VerticalAlignment="Top">
-                            <TextBox  BorderBrush="white" BorderThickness="0" FontSize="15" x:Name="txtjournalinfo" TextWrapping="Wrap"  PlaceholderText="Your entry here...">
+                        <Grid Grid.Row="3" Margin="26,0,0,0" VerticalAlignment="Top">
+                            <TextBox  BorderBrush="white" BorderThickness="0" FontSize="15" x:Name="txtjournalinfo" TextWrapping="Wrap"   PlaceholderText="Your entry here...">
 
                             </TextBox>
                         </Grid>

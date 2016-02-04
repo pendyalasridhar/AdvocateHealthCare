@@ -1,2 +1,6 @@
-MainPackage=C:\Users\sridhar\Desktop\AdvocateHealthCare\AdvocateHealthCare\bin\ARM\Debug\AdvocateHealthCare_1.0.104.0_ARM_Debug.appx
-SymbolPackage=C:\Users\sridhar\Desktop\app packages\AdvocateHealthCare_1.0.104.0_Debug_Test\AdvocateHealthCare_1.0.104.0_ARM_Debug.appxsym
+MainPackage=C:\Users\sridhar\Desktop\AdvocateHealthCare\AdvocateHealthCare\bin\ARM\Debug\AdvocateHealthCare_1.0.140.0_ARM_Debug.appx
+SymbolPackage=C:\Users\sridhar\Desktop\app packages\AdvocateHealthCare_1.0.140.0_Debug_Test\AdvocateHealthCare_1.0.140.0_ARM_Debug.appxsym
+ResourcePack=C:\Users\sridhar\Desktop\AdvocateHealthCare\AdvocateHealthCare\bin\ARM\Debug\AdvocateHealthCare_1.0.140.0_scale-100.appx
+ResourcePack=C:\Users\sridhar\Desktop\AdvocateHealthCare\AdvocateHealthCare\bin\ARM\Debug\AdvocateHealthCare_1.0.140.0_scale-125.appx
+ResourcePack=C:\Users\sridhar\Desktop\AdvocateHealthCare\AdvocateHealthCare\bin\ARM\Debug\AdvocateHealthCare_1.0.140.0_scale-150.appx
+ResourcePack=C:\Users\sridhar\Desktop\AdvocateHealthCare\AdvocateHealthCare\bin\ARM\Debug\AdvocateHealthCare_1.0.140.0_scale-400.appx

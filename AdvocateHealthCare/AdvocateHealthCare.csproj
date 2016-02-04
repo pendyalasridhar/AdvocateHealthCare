@@ -18,7 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>AdvocateHealthCare_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>C:\Users\sridhar\Desktop\app packages\</AppxPackageDir>
+    <AppxPackageDir>C:\Users\sridhar\Desktop\app packages</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
   </PropertyGroup>
@@ -102,6 +102,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GalleryExpandedView.xaml.cs">
+      <DependentUpon>GalleryExpandedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="JournalDetailed.xaml.cs">
+      <DependentUpon>JournalDetailed.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -151,6 +157,9 @@
     <Compile Include="QuestionEntry.xaml.cs">
       <DependentUpon>QuestionEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QuestionsDetailed.xaml.cs">
+      <DependentUpon>QuestionsDetailed.xaml</DependentUpon>
+    </Compile>
     <Compile Include="QuestionsPage.xaml.cs">
       <DependentUpon>QuestionsPage.xaml</DependentUpon>
     </Compile>
@@ -171,8 +180,66 @@
     <None Include="AdvocateHealthCare_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\100x100.png" />
+    <Content Include="Assets\107x107.png" />
     <Content Include="Assets\11.png" />
+    <Content Include="Assets\1240x1240.png" />
+    <Content Include="Assets\1240x600.scale-100.png" />
+    <Content Include="Assets\1240x600.scale-125.png" />
+    <Content Include="Assets\1240x600.scale-150.png" />
+    <Content Include="Assets\1240x600.scale-200.png" />
+    <Content Include="Assets\1240x600.scale-400.png" />
+    <Content Include="Assets\142x142.png" />
     <Content Include="Assets\1453150913_ic_close_48px.png" />
+    <Content Include="Assets\150x150.png" />
+    <Content Include="Assets\176.scale-100.png" />
+    <Content Include="Assets\176.scale-125.png" />
+    <Content Include="Assets\176.scale-150.png" />
+    <Content Include="Assets\176.scale-200.png" />
+    <Content Include="Assets\176.scale-400.png" />
+    <Content Include="Assets\188icon3.png" />
+    <Content Include="Assets\200x200.scale-100.png" />
+    <Content Include="Assets\200x200.scale-125.png" />
+    <Content Include="Assets\200x200.scale-150.png" />
+    <Content Include="Assets\200x200.scale-200.png" />
+    <Content Include="Assets\200x200.scale-400.png" />
+    <Content Include="Assets\225x225.png" />
+    <Content Include="Assets\24x24.png" />
+    <Content Include="Assets\284x284.scale-100.png" />
+    <Content Include="Assets\284x284.scale-125.png" />
+    <Content Include="Assets\284x284.scale-150.png" />
+    <Content Include="Assets\284x284.scale-200.png" />
+    <Content Include="Assets\284x284.scale-400.png" />
+    <Content Include="Assets\300x300.png" />
+    <Content Include="Assets\30x30.png" />
+    <Content Include="Assets\310x150.png" />
+    <Content Include="Assets\36x36.png" />
+    <Content Include="Assets\388icon2.png" />
+    <Content Include="Assets\388x188.png" />
+    <Content Include="Assets\388x388.scale-100.png" />
+    <Content Include="Assets\388x388.scale-125.png" />
+    <Content Include="Assets\388x388.scale-150.png" />
+    <Content Include="Assets\388x388.scale-200.png" />
+    <Content Include="Assets\388x388.scale-400.png" />
+    <Content Include="Assets\44.png" />
+    <Content Include="Assets\465x225.png" />
+    <Content Include="Assets\465x465.png" />
+    <Content Include="Assets\48x48.png" />
+    <Content Include="Assets\55.png" />
+    <Content Include="Assets\600x600.png" />
+    <Content Include="Assets\620x300.png" />
+    <Content Include="Assets\620x620.png" />
+    <Content Include="Assets\620x620.scale-200.png" />
+    <Content Include="Assets\63x63.png" />
+    <Content Include="Assets\66.png" />
+    <Content Include="Assets\71x71.png" />
+    <Content Include="Assets\75x75.png" />
+    <Content Include="Assets\88.png" />
+    <Content Include="Assets\96x96.scale-100.png" />
+    <Content Include="Assets\96x96.scale-125.png" />
+    <Content Include="Assets\96x96.scale-150.png" />
+    <Content Include="Assets\96x96.scale-200.png" />
+    <Content Include="Assets\96x96.scale-400.png" />
     <Content Include="Assets\add_a_journal.png" />
     <Content Include="Assets\Advocte portal icons-01.png" />
     <Content Include="Assets\Advocte portal icons-02.png" />
@@ -182,6 +249,30 @@
     <Content Include="Assets\Advocte portal icons-06.png" />
     <Content Include="Assets\artical_img1.png" />
     <Content Include="Assets\back.png" />
+    <Content Include="Assets\BadgeIcons\1240x1240.png" />
+    <Content Include="Assets\BadgeIcons\2480x1200.png" />
+    <Content Include="Assets\BadgeIcons\24x24.png" />
+    <Content Include="Assets\BadgeIcons\24x24.scale-100.png" />
+    <Content Include="Assets\BadgeIcons\24x24.scale-125.png" />
+    <Content Include="Assets\BadgeIcons\24x24.scale-150.png" />
+    <Content Include="Assets\BadgeIcons\24x24.scale-200.png" />
+    <Content Include="Assets\BadgeIcons\24x24.scale-400.png" />
+    <Content Include="Assets\BadgeIcons\30x30.png" />
+    <Content Include="Assets\BadgeIcons\36x36.png" />
+    <Content Include="Assets\BadgeIcons\96x96.scale-100.png" />
+    <Content Include="Assets\BadgeIcons\96x96.scale-125.png" />
+    <Content Include="Assets\BadgeIcons\96x96.scale-200.png" />
+    <Content Include="Assets\BadgeIcons\775x375.png" />
+    <Content Include="Assets\BadgeIcons\88x88.png" />
+    <Content Include="Assets\BadgeIcons\930x450.png" />
+    <Content Include="Assets\BadgeIcons\96x96.png" />
+    <Content Include="Assets\BadgeIcons\96x96.scale-150.png" />
+    <Content Include="Assets\BadgeIcons\96x96.scale-400.png" />
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\BadgeLogo.scale-125.png" />
+    <Content Include="Assets\BadgeLogo.scale-150.png" />
+    <Content Include="Assets\BadgeLogo.scale-200.png" />
+    <Content Include="Assets\BadgeLogo.scale-400.png" />
     <Content Include="Assets\Breastfeeding-and-Smoking.png" />
     <Content Include="Assets\calendar.png" />
     <Content Include="Assets\capture_photo.png" />
@@ -198,10 +289,12 @@
     <Content Include="Assets\GoodSamaritanicon - Copy.png" />
     <Content Include="Assets\hospital.png" />
     <Content Include="Assets\Edit.png" />
+    <Content Include="Assets\icon189.png" />
     <Content Include="Assets\img2.png" />
     <Content Include="Assets\img3.png" />
     <Content Include="Assets\jou.png" />
     <Content Include="Assets\journal_thumb3.png" />
+    <Content Include="Assets\login-potrait.png" />
     <Content Include="Assets\login_bg.png" />
     <Content Include="Assets\logo.png" />
     <Content Include="Assets\logo_big.jpg" />
@@ -228,17 +321,43 @@
     <Content Include="Assets\Pre_Delivery\PreDelivery_MeetDrTherese.jpg" />
     <Content Include="Assets\Pre_Delivery\PreDelivery_OpioidPainkillers.jpg" />
     <Content Include="Assets\read.png" />
+    <Content Include="Assets\Register.PNG" />
     <Content Include="Assets\register_for_classes.jpg" />
     <Content Include="Assets\replay.png" />
     <Content Include="Assets\settings.png" />
     <Content Include="Assets\share.png" />
     <Content Include="Assets\slider1.jpg" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\Square71x71Logo.scale-125.png" />
     <Content Include="Assets\Stages-of-labor.png" />
+    <Content Include="Assets\StoreAppImages\100x100.png" />
+    <Content Include="Assets\StoreAppImages\200x200.png" />
+    <Content Include="Assets\StoreAppImages\50x50-100.png" />
+    <Content Include="Assets\StoreAppImages\63x63.png" />
+    <Content Include="Assets\StoreAppImages\75x75.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
     <Content Include="Assets\unread.png" />
     <Content Include="Assets\redirect.png" />
     <Content Include="Assets\user.png" />
     <Content Include="Assets\Vaccination.png" />
     <Content Include="Assets\video.png" />
+    <Content Include="Assets\Humera.png" />
     <Content Include="Assets\video_play.jpg" />
     <Content Include="Assets\video_play.png" />
     <Content Include="Assets\video_thumb1.png" />
@@ -248,12 +367,15 @@
     <Content Include="Assets\video_thumb5.png" />
     <Content Include="Assets\video_thumb6.png" />
     <Content Include="Assets\weight.png" />
+    <Content Include="Assets\weightpregnancy1_.jpg" />
+    <Content Include="Assets\weightpregnancy1_AHC.png" />
+    <Content Include="Assets\weightpregnancy2.png" />
     <Content Include="Assets\whight_img1.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="calendar.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
@@ -265,6 +387,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="DietandPregnancy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GalleryExpandedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,6 +407,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InputWeightPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JournalDetailed.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -324,6 +454,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="QuestionsDetailed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="QuestionsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -350,7 +484,9 @@
       <Name>Behaviors SDK %28XAML%29</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\images21\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

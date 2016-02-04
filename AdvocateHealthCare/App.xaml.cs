@@ -41,6 +41,7 @@ namespace AdvocateHealthCare
             this.Suspending += OnSuspending;
         }
         public static string BASE_URL = "http://183.82.48.194:5560/";
+       // public static string BASE_URL = "http://advocatehealthcareapi.azurewebsites.net/";
         public static int userId = 0;
         public static int hospitalId = 0;
         public static string userName = "";
